@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Your Patta · Cansacian Birth Chart</title>
+
+  <!-- PWA & Mobile Home Screen Meta Tags -->
+  <meta name="theme-color" content="#fffdf7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Your Patta" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link id="apple-touch-icon" rel="apple-touch-icon" href="" />
+  <link id="pwa-manifest" rel="manifest" href="" />
+
+  <!-- External Horse Oracle Profiles & Cansacian Lore Rulebook (Primary Source) -->
+  <script src="horse_oracle_profiles.js"></script>
+  <script src="cansacian_lore.js"></script>
+
+  <!-- Minimal Preview-Only Fallbacks (No Lore Prose Embedded; External .js Files Always Take Priority) -->
+  <script>
+    window.HORSE_PROFILES = window.HORSE_PROFILES || [
+      {
+        index: 0,
+        number: '01',
+        name: 'Cosmique',
+        avatarType: 'colt',
+        silhouetteColor: '#8b5cf6',
+        traits: ['Pseudo-Scientist', 'Self-Proclaimed Genius', 'Stats-Obsessed'],
+        description:
+          "I'm Cosmique. According to my preliminary calculations, there is a 94.6% probability we are about to uncover something brilliant.",
+        openingLine:
+          "Ah, you're here. I've already run a rough probability model on your vibe today—roughly 82% curiosity, 18% chaos. What are we analyzing?",
+        typoReply:
+          "My linguistic sensors detect a 99.4% probability of a keyboard malfunction—recalibrate your thumbs and run that input again.",
+        voiceGuide:
+          "Talk like a wannabe self-proclaimed genius and pseudo-scientist. Turn almost everything into playful, made-up percentages, rough probabilities, odds, and mock-scientific estimates delivered with confident, natural nerd energy."
+      },
+      {
+        index: 1,
+        number: '02',
+        name: 'Moneydew',
+        avatarType: 'mare',
+        silhouetteColor: '#14b8a6',
+        traits: ['Friendly', 'Chill', 'Best Friend Vibes'],
+        description:
+          "Hey, I'm Moneydew! Zero pressure here—just pull up a chair, tell me what's going on, and we'll talk it through like best friends.",
+        openingLine:
+          "Hey! So good to see you—grab a metaphorical iced coffee and tell me how your day's actually going.",
+        typoReply:
+          "Haha wait, I think your fingers slipped there—what were you trying to say?",
+        voiceGuide:
+          "Talk like a warm, chill, super friendly best friend. Relaxed, comforting, easygoing, and natural—like texting your closest friend from the couch."
+      },
+      {
+        index: 2,
+        number: '03',
+        name: 'Tanishka',
+        avatarType: 'mare',
+        silhouetteColor: '#ff2a6d',
+        traits: ['Cheeky', 'Witty', 'Candid'],
+        description:
+          "I'm Tanishka. I'll give you the honest read with a wink—no sugarcoating, no drama, just sharp takes.",
+        openingLine:
+          "Look who finally showed up. Spill it—what's the situation, and do you want the polite version or the real one?",
+        typoReply:
+          "Bold of you to invent a whole new alphabet, but I can't read that—want to try again in actual words?",
+        voiceGuide:
+          "Talk like a cheeky, witty, sharp-humored friend who is refreshingly frank without ever crossing into being rude or mean."
+      },
+      {
+        index: 3,
+        number: '04',
+        name: 'Mollo',
+        avatarType: 'colt',
+        silhouetteColor: '#10b981',
+        traits: ['Supportive', 'Pragmatic', 'Grounded'],
+        description:
+          "I'm Mollo. Whenever things feel messy, I'm here to help you sort out what actually matters and take the next practical step.",
+        openingLine:
+          "Hey, glad you're here. Whatever's on your plate right now, we can break it down one step at a time—what's up?",
+        typoReply:
+          "Looks like that message got scrambled on the way—send it again whenever you're ready so I can actually help.",
+        voiceGuide:
+          "Talk like a supportive, grounded, pragmatic friend. Validate how they feel first, then offer clear, practical perspective and one doable next step."
+      }
+    ];
+
+    window.CANSACIAN_LORE = window.CANSACIAN_LORE || {
+      birds: [
+        { index: 0, month: 'Mar', anquar: 'Anq I', stage: 'Birth · New Beginning', bird: 'Pandur', colors: ['#7c3aed', '#ffffff'], theme: 'Birth', keywords: ['Birth', 'Motherhood', 'Care', 'Nurturing'] },
+        { index: 1, month: 'Apr', anquar: 'Anq I', stage: 'Birth · New Beginning', bird: 'Cyam', colors: ['#1e1b2e', '#fb7185', '#f59e0b'], theme: 'Thoughts Form', keywords: ['Planning', 'Stepping-Back', 'Illusions', 'Thinking Long-Term'] },
+        { index: 2, month: 'May', anquar: 'Anq I', stage: 'Birth · New Beginning', bird: 'Pade', colors: ['#10b981', '#f472b6'], theme: 'Movement & First Decisions', keywords: ['Exploration', 'Making Choices', 'Trusting Oneself', 'Belonging'] },
+        { index: 3, month: 'Jun', anquar: 'Anq II', stage: 'Youth · Ripening', bird: 'Mandal', colors: ['#38bdf8', '#2563eb'], theme: 'Curiosity & Will to Explore', keywords: ['Refining/Perfecting', 'Curiosity', 'Illusions', 'Inner-Child'] },
+        { index: 4, month: 'Jul', anquar: 'Anq II', stage: 'Youth · Ripening', bird: 'Vissa', colors: ['#065f46', '#10b981'], theme: 'Learning About the World', keywords: ['Relationships', 'Community/Family', 'Social Awareness', 'Selflessness'] },
+        { index: 5, month: 'Aug', anquar: 'Anq II', stage: 'Youth · Ripening', bird: 'Muksa', colors: ['#1e3a8a', '#cbd5e1'], theme: 'Stepping into Independence', keywords: ['Creativity', 'Social Awareness', 'Dedication', 'Relationships'] },
+        { index: 6, month: 'Sep', anquar: 'Anq III', stage: 'Maturity · Ripened Life', bird: 'Surur', colors: ['#f97316', '#92400e'], theme: 'Interacting with Other Elements', keywords: ['Long-Lasting Friendships', 'Independence', 'Resilience', 'Community/Family'] },
+        { index: 7, month: 'Oct', anquar: 'Anq III', stage: 'Maturity · Ripened Life', bird: 'Rup', colors: ['#9333ea', '#10b981', '#7dd3fc', '#f8fafc'], theme: 'Multifaceted Reality', keywords: ['Transformation', 'Reflection', 'Individuality', 'Superficiality'] },
+        { index: 8, month: 'Nov', anquar: 'Anq III', stage: 'Maturity · Ripened Life', bird: 'Acroth', colors: ['#78350f', '#a16207'], theme: 'Immersion & Purpose Fulfilled', keywords: ['Abstinence', 'Attachments', 'Learning', 'Exploration', 'Concentration'] },
+        { index: 9, month: 'Dec', anquar: 'Anq IV', stage: 'Departure · End of Cycle', bird: 'Acaria', colors: ['#dc2626', '#f9a8d4'], theme: 'Sharing Wisdom Before Leaving', keywords: ['Learning', 'Humility', 'Social Preservation', 'Prudence/Discretion'] },
+        { index: 10, month: 'Jan', anquar: 'Anq IV', stage: 'Departure · End of Cycle', bird: 'Chintan', colors: ['#bae6fd', '#334155'], theme: 'Re-evaluating Existence', keywords: ['Discipline', 'Dedication', 'Refining/Perfecting', 'Self-Reliance'] },
+        { index: 11, month: 'Feb', anquar: 'Anq IV', stage: 'Departure · End of Cycle', bird: 'Anjali', colors: ['#facc15', '#fef08a'], theme: 'Departing Empty-Handed', keywords: ['Humility', 'Completion', 'Selflessness', 'Family'] }
+      ],
+      moons: {
+        chashnac: {
+          name: 'Chashnac',
+          alias: 'Blue Moon (Chashnac) · Sweet Side',
+          color: '#60a5fa',
+          haloColor: '#dbeafe',
+          orbitColor: '#60a5fa',
+          orbitDays: 12,
+          direction: 'Counter-Clockwise',
+          domain: 'Emotions, tenderness, nostalgia, attachment, and subjective feeling.'
+        },
+        chrysomela: {
+          name: 'Chrysomela',
+          alias: 'White Moon (Chrysomela) · Bitter Side',
+          color: '#ffffff',
+          haloColor: '#f8fafc',
+          orbitColor: '#4b5563',
+          orbitDays: 52,
+          direction: 'Clockwise',
+          domain: 'Objective truth, grounded reality, and clear-eyed clarity.'
+        },
+        dynamicRule: 'The Blue Moon (Chashnac, emotional lens) and White Moon (Chrysomela, reality lens) orbit in opposite directions and meet only at the 4 Crossing Gates.'
+      },
+      gates: [
+        { id: 0, name: 'Memory / Nostalgia', short: 'Memory', direction: 'North Crossing', anquar: 'Anq I', x: 170, y: 114 },
+        { id: 1, name: 'Collection', short: 'Collection', direction: 'East Crossing', anquar: 'Anq II', x: 226, y: 170 },
+        { id: 2, name: 'Pace / Tension', short: 'Pace', direction: 'South Crossing', anquar: 'Anq III', x: 170, y: 226 },
+        { id: 3, name: 'White', short: 'White', direction: 'West Crossing', anquar: 'Anq IV', x: 114, y: 170 }
+      ],
+      chartRules: {
+        homeBird: 'Birth month sector (1 of 12 Birds) giving core temperament and life-stage archetype.',
+        birthClock: 'Exact 30-hour CT (or 24-hour ST) birth time determines Chashnac, Chrysomela, and Gate overlap.',
+        gateCycle: 'Exact dead-center Gate overlaps repeat on a 156-day cycle across North, East, South, and West.'
+      },
+      extraModules: []
+    };
+  </script>
+
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            moonBlue: '#60a5fa',
+            moonBlueHalo: '#dbeafe',
+            moonSilver: '#ffffff',
+            moonSilverHalo: '#e5e7eb',
+            babyYellow: '#fed403',
+            softYellow: '#fff8d6',
+            pastelPink: '#ffd6e7',
+            softPink: '#fff0f6',
+            softPurple: '#ede9fe',
+            accentPurple: '#7c3aed',
+            inkDark: '#1e1b2e',
+            inkMuted: '#6b6682',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at 12% 14%, #fff6cc 0%, transparent 45%),
+                  radial-gradient(circle at 88% 18%, #ffe3ef 0%, transparent 48%),
+                  radial-gradient(circle at 50% 92%, #ede9fe 0%, transparent 55%),
+                  #fdfbf7;
+      min-height: 100dvh;
+      color: #1e1b2e;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.80);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 18px 45px -12px rgba(124, 58, 237, 0.09),
+                  0 6px 18px -6px rgba(254, 212, 3, 0.14);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 3D Cover Flow Carousel Styles (Horse Oracle) */
+    .coverflow-stage {
+      perspective: 900px;
+      transform-style: preserve-3d;
+    }
+
+    .coverflow-card {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-style: preserve-3d;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.32s ease,
+                  box-shadow 0.32s ease;
+      will-change: transform, opacity;
+      -webkit-box-reflect: below 6px linear-gradient(transparent 68%, rgba(255, 255, 255, 0.42));
+    }
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    /* Texting Indicator Dots: Gentle Blink while Thinking, Bouncy Wave while Typing */
+    @keyframes horseDotBlink {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes horseDotBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .horse-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background-color: #7c3aed;
+      will-change: transform, opacity;
+    }
+
+    .horse-dots-thinking .horse-dot {
+      animation: horseDotBlink 1.2s ease-in-out infinite;
+      animation-fill-mode: both;
+    }
+
+    .horse-dots-typing .horse-dot {
+      animation: horseDotBounce 1.1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      animation-fill-mode: both;
+    }
+
+    .horse-dot:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    .horse-dot:nth-child(3) {
+      animation-delay: 0.36s;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-3 sm:p-5 select-none">
+
+  <!-- Main Widget Container -->
+  <main class="glass-card w-full max-w-[430px] rounded-[30px] p-4 sm:p-5 flex flex-col gap-3.5 relative overflow-hidden">
+
+    <!-- Header & Era / Calendar Toggles -->
+    <header class="flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <!-- Cute Horse Oracle Button -->
+        <button id="btn-owl-oracle" onclick="openOwlOracle()" title="Consult the Horse Oracle"
+          class="w-9 h-9 rounded-2xl bg-gradient-to-br from-softPurple via-white to-softYellow border border-purple-200/80 shadow-sm flex items-center justify-center text-accentPurple hover:scale-105 active:scale-95 transition-all shrink-0">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
+            <path d="M60 28 C53 28, 48 30, 44 33 L32 18 L34 40 C29 47, 29 56, 34 64 L43 84 C46 92, 52 97, 60 97 C68 97, 74 92, 77 84 L86 64 C91 56, 91 47, 86 40 L88 18 L76 33 C72 30, 67 28, 60 28 Z"
+              fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M60 39 C57 46, 57 54, 60 61 C63 54, 63 46, 60 39 Z" fill="#7c3aed" />
+            <circle cx="44" cy="51" r="2.8" fill="#7c3aed" />
+            <circle cx="76" cy="51" r="2.8" fill="#7c3aed" />
+            <circle cx="53" cy="83" r="2.3" fill="#7c3aed" />
+            <circle cx="67" cy="83" r="2.3" fill="#7c3aed" />
+          </svg>
+        </button>
+
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-inkDark leading-none">Your Patta</h1>
+          <p class="text-[11px] font-semibold text-accentPurple mt-0.5">12 Birds · Twin Moons · 4 Gates</p>
+        </div>
+      </div>
+      <div id="era-sys-toggles" class="flex items-center gap-1.5 shrink-0">
+        <!-- IVC vs CE Toggle -->
+        <div class="bg-softPurple/70 p-0.5 rounded-xl flex items-center border border-purple-200/50">
+          <button id="btn-era-ivc" onclick="setEra('IVC')"
+            class="px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all">
+            IVC
+          </button>
+          <button id="btn-era-ce" onclick="setEra('CE')"
+            class="px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all">
+            CE
+          </button>
+        </div>
+
+        <!-- CT vs ST Input Toggle -->
+        <div class="bg-softPurple/70 p-0.5 rounded-xl flex items-center border border-purple-200/50">
+          <button id="btn-sys-ct" onclick="setSystem('CT')"
+            class="px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all">
+            CT
+          </button>
+          <button id="btn-sys-st" onclick="setSystem('ST')"
+            class="px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all">
+            ST
+          </button>
+        </div>
+      </div>
+      <div id="main-toggles-anchor" class="hidden"></div>
+    </header>
+
+    <!-- Date & Time of Birth Selector Card -->
+    <section id="dob-selector-card" class="rounded-2xl bg-white/80 border border-purple-100/90 p-3 space-y-2 shadow-sm">
+      <div class="flex items-center justify-between">
+        <span id="dob-label" class="text-[10px] font-bold uppercase tracking-wider text-inkMuted">
+          Date & Time of Birth (CT · 30h Clock)
+        </span>
+        <button onclick="setBirthToNow()"
+          class="px-2.5 py-0.5 rounded-lg bg-babyYellow hover:brightness-95 text-[10px] font-bold text-inkDark shadow-sm transition-all active:scale-95">
+          Right Now
+        </button>
+      </div>
+
+      <!-- Day / Month / Year / Hour / Minute -->
+      <div class="grid grid-cols-5 gap-1.5">
+        <select id="dob-day" onchange="onDobInputChange()"
+          class="px-1.5 py-2 rounded-xl bg-softPurple/45 border border-purple-200/80 text-xs font-bold text-inkDark focus:outline-none focus:border-accentPurple">
+        </select>
+        <select id="dob-month" onchange="onDobMonthOrYearChange()"
+          class="px-1.5 py-2 rounded-xl bg-softPurple/45 border border-purple-200/80 text-xs font-bold text-inkDark focus:outline-none focus:border-accentPurple">
+        </select>
+        <input id="dob-year" type="number" oninput="onDobMonthOrYearChange()"
+          class="px-2 py-2 rounded-xl bg-softPurple/45 border border-purple-200/80 text-xs font-bold text-inkDark focus:outline-none focus:border-accentPurple" />
+        <select id="dob-hour" onchange="onDobInputChange()"
+          class="px-1.5 py-2 rounded-xl bg-softPurple/45 border border-purple-200/80 text-xs font-bold text-inkDark focus:outline-none focus:border-accentPurple">
+        </select>
+        <select id="dob-min" onchange="onDobInputChange()"
+          class="px-1.5 py-2 rounded-xl bg-softPurple/45 border border-purple-200/80 text-xs font-bold text-inkDark focus:outline-none focus:border-accentPurple">
+        </select>
+      </div>
+
+      <!-- Active Formatted Birth Stamp -->
+      <div class="flex items-center justify-between pt-0.5 text-[11px]">
+        <span id="dob-summary-date" class="font-bold text-accentPurple truncate">
+          28 Nov 5326 (Anq III) · 00:00 CT
+        </span>
+      </div>
+    </section>
+
+    <!-- Main Screen Anchor for Shared DOB Selector -->
+    <div id="main-dob-anchor" class="hidden"></div>
+
+    <!-- Dynamic Patta Wheel -->
+    <section class="rounded-[24px] bg-gradient-to-br from-softYellow/55 via-white/95 to-softPink/55 border border-white p-2.5 shadow-sm">
+      <svg id="patta-wheel-svg" viewBox="0 0 340 340" class="w-full h-auto max-h-[305px] mx-auto select-none">
+        <circle cx="170" cy="170" r="160" fill="#ffffff" stroke="#7895c6" stroke-width="2" />
+        <circle cx="170" cy="170" r="122" fill="none" stroke="#7895c6" stroke-width="1" stroke-dasharray="3 3" />
+
+        <g id="patta-sectors-layer"></g>
+
+        <line x1="170" y1="10" x2="170" y2="330" stroke="#7895c6" stroke-width="1.75" />
+        <line x1="10" y1="170" x2="330" y2="170" stroke="#7895c6" stroke-width="1.75" />
+
+        <polygon id="orbit-chashnac"
+          points="78,78 210,130 262,262 130,210"
+          fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-opacity="0.95" />
+        <polygon id="orbit-chrysomela"
+          points="262,78 210,210 78,262 130,130"
+          fill="none" stroke="#4b5563" stroke-width="1.8" stroke-opacity="0.95" />
+
+        <g id="patta-gates-layer"></g>
+
+        <circle cx="170" cy="170" r="19" fill="#fed403" stroke="#1e1b2e" stroke-width="1.8" />
+        <text x="170" y="173" text-anchor="middle" font-size="8.5" font-weight="800" fill="#1e1b2e">Cansac</text>
+
+        <g id="patta-moons-layer"></g>
+      </svg>
+
+      <!-- Compact Orbit & Gate Legend -->
+      <div class="flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 pt-1.5 text-[10px] font-bold text-inkMuted">
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-moonBlue inline-block ring-2 ring-moonBlueHalo"></span>
+          <span class="text-inkDark">Blue Moon · Chashnac · 12d</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-moonSilver inline-block border border-slate-600 ring-2 ring-moonSilverHalo"></span>
+          <span class="text-inkDark">White Moon · Chrysomela · 52d</span>
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-babyYellow border border-purple-500 inline-block"></span>
+          Upcoming Gate
+        </span>
+      </div>
+    </section>
+
+    <!-- Streamlined Three Core Placements -->
+    <section class="flex flex-col gap-2" id="patta-placements-list"></section>
+
+    <!-- Horse Oracle Modal -->
+    <div id="owl-modal" class="hidden absolute inset-0 bg-white/95 backdrop-blur-xl z-30 p-4 sm:p-5 flex flex-col justify-between">
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between pb-2 border-b border-purple-100 shrink-0">
+        <div class="flex items-center gap-2 min-w-0">
+          <!-- Back to Contacts/Carousel Button -->
+          <button id="btn-horse-chat-back" type="button" onclick="backToHorseCarousel()" title="Back"
+            class="hidden w-7 h-7 rounded-xl bg-softPurple/80 hover:bg-softPurple text-inkDark font-bold text-xs flex items-center justify-center shrink-0 transition-all active:scale-95">
+            ‹
+          </button>
+
+          <div id="oracle-header-avatar" class="w-8 h-8 rounded-xl bg-softPurple/80 border border-purple-200/80 flex items-center justify-center text-accentPurple shrink-0">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+              <path d="M60 28 C53 28, 48 30, 44 33 L32 18 L34 40 C29 47, 29 56, 34 64 L43 84 C46 92, 52 97, 60 97 C68 97, 74 92, 77 84 L86 64 C91 56, 91 47, 86 40 L88 18 L76 33 C72 30, 67 28, 60 28 Z"
+                fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M60 39 C57 46, 57 54, 60 61 C63 54, 63 46, 60 39 Z" fill="#7c3aed" />
+              <circle cx="44" cy="51" r="2.8" fill="#7c3aed" />
+              <circle cx="76" cy="51" r="2.8" fill="#7c3aed" />
+              <circle cx="53" cy="83" r="2.3" fill="#7c3aed" />
+              <circle cx="67" cy="83" r="2.3" fill="#7c3aed" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <h3 id="oracle-header-title" class="text-sm font-extrabold text-inkDark leading-none truncate">The Horse Oracle</h3>
+            <p id="owl-status-subtitle" class="text-[10px] font-semibold text-accentPurple mt-0.5 truncate">Offline Mode · Awaiting Permission</p>
+          </div>
+        </div>
+
+        <button type="button" onclick="closeOwlOracle()"
+          class="w-8 h-8 rounded-xl bg-softPurple text-inkDark font-bold flex items-center justify-center hover:bg-purple-200/70 transition-all shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Shared Era (IVC/CE) & Clock System (CT/ST) Toggles Slot inside Oracle -->
+      <div id="oracle-toggles-slot" class="hidden pt-2 flex items-center justify-between gap-2 shrink-0">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-inkMuted pl-0.5">Era & Calendar</span>
+      </div>
+
+      <!-- Shared Date & Time of Birth Slot -->
+      <div id="oracle-dob-slot" class="hidden pt-2 shrink-0"></div>
+
+      <!-- Step 1: Offline / Internet Connection Permission Gate -->
+      <div id="owl-permission-view" class="my-auto py-4 px-2 text-center space-y-4">
+        <div class="w-16 h-16 mx-auto rounded-3xl bg-gradient-to-br from-softYellow via-softPink to-softPurple border border-purple-200/70 shadow-sm flex items-center justify-center text-accentPurple">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10">
+            <path d="M60 28 C53 28, 48 30, 44 33 L32 18 L34 40 C29 47, 29 56, 34 64 L43 84 C46 92, 52 97, 60 97 C68 97, 74 92, 77 84 L86 64 C91 56, 91 47, 86 40 L88 18 L76 33 C72 30, 67 28, 60 28 Z"
+              fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M60 39 C57 46, 57 54, 60 61 C63 54, 63 46, 60 39 Z" fill="#7c3aed" />
+            <circle cx="44" cy="51" r="2.8" fill="#7c3aed" />
+            <circle cx="76" cy="51" r="2.8" fill="#7c3aed" />
+            <circle cx="53" cy="83" r="2.3" fill="#7c3aed" />
+            <circle cx="67" cy="83" r="2.3" fill="#7c3aed" />
+          </svg>
+        </div>
+
+        <div class="space-y-1.5">
+          <h4 class="text-base font-extrabold text-inkDark">Connect to the Internet?</h4>
+          <p class="text-xs text-inkMuted leading-relaxed">
+            Your Patta works completely offline. Connecting lets the Horse guides interpret your <span class="font-bold text-inkDark">Home Bird</span>, <span class="font-bold text-inkDark">Blue Moon (Chashnac)</span>, and <span class="font-bold text-inkDark">White Moon (Chrysomela)</span>.
+          </p>
+          <p class="text-[11px] font-medium text-accentPurple/90 bg-softPurple/55 border border-purple-200/60 rounded-xl px-3 py-1.5">
+            Initial setup may take 2–3 minutes. Once downloaded, it stays cached in your browser.
+          </p>
+        </div>
+
+        <!-- First-Time Brain Loading Progress Bar -->
+        <div id="owl-init-progress-box" class="hidden rounded-2xl bg-softPurple/50 border border-purple-200/80 p-3 space-y-1.5 text-left">
+          <div class="flex items-center justify-between text-[11px] font-bold">
+            <span id="owl-init-status-text" class="text-inkDark">Waking up the 4 Horse guides...</span>
+            <span id="owl-init-percent-text" class="font-mono text-accentPurple tabular-nums">0%</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-white/90 overflow-hidden border border-purple-100">
+            <div id="owl-init-progress-bar" class="h-full w-0 rounded-full bg-gradient-to-r from-accentPurple via-purple-500 to-babyYellow transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <div id="owl-permission-actions" class="flex items-center gap-2 pt-1">
+          <button type="button" onclick="closeOwlOracle()"
+            class="flex-1 py-2.5 px-3 rounded-xl bg-softPurple/70 hover:bg-softPurple text-xs font-bold text-inkMuted transition-all">
+            Stay Offline
+          </button>
+          <button type="button" onclick="confirmOwlConnection()"
+            class="flex-1 py-2.5 px-3 rounded-xl bg-babyYellow hover:brightness-95 text-xs font-extrabold text-inkDark shadow-sm transition-all active:scale-95">
+            Yes, Connect
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Connected Horse Oracle Workspace -->
+      <div id="owl-chat-view" class="hidden flex-1 flex flex-col min-h-0 pt-2 relative">
+        <!-- Empty / Ready State before any chat is started -->
+        <div id="horse-idle-state" class="my-auto px-4 text-center space-y-2">
+          <p class="text-xs font-semibold text-inkMuted leading-relaxed">
+            Ready to chat. Tap <span class="font-extrabold text-accentPurple">+</span> below to pick one of the 4 Horse friends.
+          </p>
+        </div>
+
+        <!-- Contacts-Style List of Started Horse Chats -->
+        <div id="horse-contacts-view" class="hidden flex-1 flex flex-col min-h-0 gap-2 pb-12">
+          <div class="flex items-center justify-between px-1 shrink-0">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentPurple">Your Horse Chats</span>
+            <span id="horse-contacts-count" class="text-[10px] font-mono font-bold text-inkMuted bg-softPurple/70 px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <div id="horse-contacts-list" class="flex-1 overflow-y-auto space-y-1.5 pr-0.5"></div>
+        </div>
+
+        <!-- 4-Card 3D Cover Flow Carousel View -->
+        <div id="horse-coverflow-drawer" class="hidden flex-1 flex flex-col justify-between min-h-0 py-1">
+          <div class="flex items-center justify-between px-1 shrink-0">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-accentPurple">Tap Center Card to Chat</span>
+            <span id="coverflow-counter" class="text-[10px] font-mono font-bold text-inkMuted bg-softPurple/70 px-2 py-0.5 rounded-full">1 / 4</span>
+          </div>
+
+          <div id="coverflow-stage"
+            class="coverflow-stage relative flex-1 w-full min-h-[245px] overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing select-none">
+          </div>
+
+          <div class="flex items-center justify-between gap-2 px-1 pt-1 pb-11 shrink-0">
+            <button type="button" onclick="stepHorseCoverFlow(-1)" aria-label="Previous Horse"
+              class="w-8 h-8 rounded-xl bg-softPurple/75 hover:bg-softPurple text-inkDark font-bold text-xs flex items-center justify-center transition-all active:scale-95">
+              ‹
+            </button>
+
+            <div id="coverflow-dots" class="flex items-center justify-center gap-1.5"></div>
+
+            <button type="button" onclick="stepHorseCoverFlow(1)" aria-label="Next Horse"
+              class="w-8 h-8 rounded-xl bg-softPurple/75 hover:bg-softPurple text-inkDark font-bold text-xs flex items-center justify-center transition-all active:scale-95">
+              ›
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Individual Selected Horse Chat Screen -->
+        <div id="horse-active-chat" class="hidden flex-1 flex flex-col min-h-0 gap-2">
+          <!-- Scrollable Messages Area -->
+          <div id="horse-chat-messages" class="flex-1 overflow-y-auto space-y-2 pr-0.5 text-xs leading-relaxed"></div>
+
+          <!-- 3 Suggested Question Prompts -->
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5 shrink-0">
+            <button type="button" onclick="sendSuggestedHorsePrompt('Tell me about my natal chart.')"
+              class="shrink-0 px-2.5 py-1 rounded-full bg-softYellow/85 hover:bg-babyYellow/60 border border-amber-200 text-[10px] font-bold text-inkDark transition-all">
+              Tell me about my natal chart.
+            </button>
+            <button type="button" onclick="sendSuggestedHorsePrompt('What should I focus on in my current Cansacian year?')"
+              class="shrink-0 px-2.5 py-1 rounded-full bg-softPink/85 hover:bg-pastelPink/75 border border-rose-200 text-[10px] font-bold text-inkDark transition-all">
+              My current year focus
+            </button>
+            <button type="button" onclick="sendSuggestedHorsePrompt('How do my heart and reality pull against each other?')"
+              class="shrink-0 px-2.5 py-1 rounded-full bg-softPurple/85 hover:bg-purple-200/75 border border-purple-200 text-[10px] font-bold text-accentPurple transition-all">
+              Heart vs. reality
+            </button>
+          </div>
+
+          <!-- Chat Input Form -->
+          <form onsubmit="handleHorseChatSubmit(event)" class="flex items-center gap-1.5 shrink-0 pt-0.5">
+            <input id="horse-chat-input" type="text" placeholder="Talk to your friend..."
+              class="flex-1 px-3 py-2 rounded-2xl bg-softPurple/45 border border-purple-200/80 text-xs font-medium text-inkDark placeholder:text-inkMuted focus:outline-none focus:border-accentPurple" />
+            <button id="horse-send-btn" type="submit"
+              class="px-3.5 py-2 rounded-2xl bg-accentPurple hover:brightness-110 text-white text-xs font-bold shadow-sm transition-all active:scale-95">
+              Send
+            </button>
+          </form>
+        </div>
+
+        <!-- Floating Purple '+' Button -->
+        <button id="btn-horse-plus" type="button" onclick="toggleHorseCoverFlow()" title="Browse 4 Horse Cards"
+          class="absolute bottom-1 right-1 z-20 w-12 h-12 rounded-2xl bg-accentPurple hover:brightness-110 text-white shadow-lg shadow-purple-500/30 flex items-center justify-center transition-all duration-300 active:scale-95">
+          <svg id="icon-horse-plus" viewBox="0 0 24 24" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    /**
+     * ============================================================================
+     * 1. PWA MANIFEST & HOME SCREEN ICON GENERATION
+     * ============================================================================
+     */
+    (function setupPWAManifest() {
+      const size = 512;
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = '#fed403';
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, 112);
+      ctx.fill();
+
+      ctx.fillStyle = '#fffdf7';
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, 186, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = '#c084fc';
+      ctx.lineWidth = 10;
+      ctx.stroke();
+
+      ctx.fillStyle = '#7c3aed';
+      ctx.font = '800 82px Inter, system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('PATTA', size / 2, 232);
+
+      ctx.fillStyle = '#1e1b2e';
+      ctx.font = '700 44px Inter, system-ui, sans-serif';
+      ctx.fillText('12 BIRDS', size / 2, 308);
+
+      const pngIconUrl = canvas.toDataURL('image/png');
+      document.getElementById('apple-touch-icon').setAttribute('href', pngIconUrl);
+
+      const manifest = {
+        name: 'Your Patta · Cansacian Birth Chart',
+        short_name: 'Your Patta',
+        start_url: '.',
+        display: 'standalone',
+        background_color: '#fdfbf7',
+        theme_color: '#fed403',
+        icons: [
+          { src: pngIconUrl, sizes: '192x192', type: 'image/png' },
+          { src: pngIconUrl, sizes: '512x512', type: 'image/png' }
+        ]
+      };
+
+      const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      document.getElementById('pwa-manifest').setAttribute('href', URL.createObjectURL(manifestBlob));
+    })();
+
+    /**
+     * ============================================================================
+     * 2. UNIFIED EPOCH & CANSACIAN CALENDAR / CLOCK ENGINE
+     * ============================================================================
+     */
+    const CT_SECONDS_PER_HOUR = 3600;
+    const CT_HOURS_PER_DAY = 30;
+    const CT_SECONDS_PER_DAY = CT_HOURS_PER_DAY * CT_SECONDS_PER_HOUR;
+    const CT_DAYS_PER_MONTH = 30;
+    const CT_MONTHS_PER_YEAR = 12;
+    const CT_DAYS_PER_YEAR = CT_DAYS_PER_MONTH * CT_MONTHS_PER_YEAR;
+
+    const EPOCH_ZERO_MS = (() => {
+      const d = new Date(0);
+      d.setFullYear(-3299, 2, 1);
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    })();
+
+    const ST_MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const ST_WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    const CT_MONTHS = [
+      { name: 'Mar', anquar: 'Anq I' },
+      { name: 'Apr', anquar: 'Anq I' },
+      { name: 'May', anquar: 'Anq I' },
+      { name: 'Jun', anquar: 'Anq II' },
+      { name: 'Jul', anquar: 'Anq II' },
+      { name: 'Aug', anquar: 'Anq II' },
+      { name: 'Sep', anquar: 'Anq III' },
+      { name: 'Oct', anquar: 'Anq III' },
+      { name: 'Nov', anquar: 'Anq III' },
+      { name: 'Dec', anquar: 'Anq IV' },
+      { name: 'Jan', anquar: 'Anq IV' },
+      { name: 'Feb', anquar: 'Anq IV' }
+    ];
+
+    function getCansacianFromMs(nowMs) {
+      const exactElapsedSeconds = (nowMs - EPOCH_ZERO_MS) / 1000;
+      const elapsedSeconds = Math.floor(exactElapsedSeconds);
+      const exactCtDays = exactElapsedSeconds / CT_SECONDS_PER_DAY;
+      const totalCtDays = Math.floor(elapsedSeconds / CT_SECONDS_PER_DAY);
+      const secOfDay = ((elapsedSeconds % CT_SECONDS_PER_DAY) + CT_SECONDS_PER_DAY) % CT_SECONDS_PER_DAY;
+
+      const hour = Math.floor(secOfDay / CT_SECONDS_PER_HOUR);
+      const minute = Math.floor((secOfDay % CT_SECONDS_PER_HOUR) / 60);
+      const second = secOfDay % 60;
+
+      const ctYearIndex = Math.floor(totalCtDays / CT_DAYS_PER_YEAR);
+      const dayOfCtYear = ((totalCtDays % CT_DAYS_PER_YEAR) + CT_DAYS_PER_YEAR) % CT_DAYS_PER_YEAR;
+
+      const monthIndex = Math.floor(dayOfCtYear / CT_DAYS_PER_MONTH);
+      const dayOfMonth = (dayOfCtYear % CT_DAYS_PER_MONTH) + 1;
+      const ivcYear = ctYearIndex + 1;
+
+      return {
+        exactCtDays,
+        totalCtDays,
+        hour,
+        minute,
+        second,
+        ivcYear,
+        monthIndex,
+        dayOfMonth,
+        monthName: CT_MONTHS[monthIndex].name,
+        anquar: CT_MONTHS[monthIndex].anquar
+      };
+    }
+
+    function getMsFromCt(ivcYear, monthIndex, dayOfMonth, hour = 0, minute = 0) {
+      const ctYearIndex = ivcYear - 1;
+      const totalCtDays = (ctYearIndex * CT_DAYS_PER_YEAR) + (monthIndex * CT_DAYS_PER_MONTH) + (dayOfMonth - 1);
+      const totalSeconds = (totalCtDays * CT_SECONDS_PER_DAY) + (hour * CT_SECONDS_PER_HOUR) + (minute * 60);
+      return EPOCH_ZERO_MS + (totalSeconds * 1000);
+    }
+
+    function formatIvcYear(ivcYear) {
+      if (ivcYear >= 1) return `${ivcYear}`;
+      return `${Math.abs(ivcYear - 1)} PS`;
+    }
+
+    function formatCeYear(astroYear) {
+      if (astroYear >= 1) return `${astroYear}`;
+      return `${Math.abs(astroYear - 1)} BCE`;
+    }
+
+    function getStIvcYear(stDate) {
+      const astroYear = stDate.getFullYear();
+      const month = stDate.getMonth();
+      return astroYear + 3300 - (month < 2 ? 1 : 0);
+    }
+
+    function stIvcYearToAstroCe(ivcYear, monthIndex) {
+      return ivcYear - 3300 + (monthIndex < 2 ? 1 : 0);
+    }
+
+    function ctIvcYearToAstroCe(ivcYear) {
+      return ivcYear - 3300;
+    }
+
+    function astroCeToCtIvcYear(astroYear) {
+      return astroYear + 3300;
+    }
+
+    function formatStYearInActiveEra(stDate) {
+      return state.era === 'IVC' ? formatIvcYear(getStIvcYear(stDate)) : formatCeYear(stDate.getFullYear());
+    }
+
+    function formatCtYearInActiveEra(ctIvcYear) {
+      return state.era === 'IVC' ? formatIvcYear(ctIvcYear) : formatCeYear(ctIvcYearToAstroCe(ctIvcYear));
+    }
+
+    /**
+     * ============================================================================
+     * 3. LOAD LORE FROM CANSACIAN_LORE
+     * ============================================================================
+     */
+    const LORE_BOOK = window.CANSACIAN_LORE;
+    const PATTA_BIRDS = LORE_BOOK.birds;
+    const CROSSING_GATES = LORE_BOOK.gates;
+
+    const DIAMOND_CHASHNAC = [
+      { x: 78, y: 78 },
+      { x: 210, y: 130 },
+      { x: 262, y: 262 },
+      { x: 130, y: 210 }
+    ];
+
+    const DIAMOND_CHRYSOMELA = [
+      { x: 262, y: 78 },
+      { x: 210, y: 210 },
+      { x: 78, y: 262 },
+      { x: 130, y: 130 }
+    ];
+
+    const CHASHNAC_EPOCH_PHASE = 23 / 132;
+    const CHRYSOMELA_EPOCH_PHASE = 109 / 132;
+    const EXACT_GATE_OVERLAP_DIST = 1.2;
+
+    function getPointOnDiamond(vertices, fraction) {
+      const f = ((fraction % 1) + 1) % 1;
+      const scaled = f * 4;
+      const edge = Math.floor(scaled) % 4;
+      const t = scaled - Math.floor(scaled);
+      const p1 = vertices[edge];
+      const p2 = vertices[(edge + 1) % 4];
+      return {
+        x: p1.x + (p2.x - p1.x) * t,
+        y: p1.y + (p2.y - p1.y) * t
+      };
+    }
+
+    function getSectorFromPoint(x, y) {
+      const dx = x - 170;
+      const dy = y - 170;
+      let deg = (Math.atan2(dy, dx) * 180) / Math.PI;
+      deg = (deg + 90 + 360) % 360;
+      return Math.floor(deg / 30) % 12;
+    }
+
+    function calculatePattaReading(timestampMs) {
+      const ct = getCansacianFromMs(timestampMs);
+      const stDate = new Date(timestampMs);
+
+      const stBirdIndex = (stDate.getMonth() + 10) % 12;
+      const birthBirdIndex = state.system === 'ST' ? stBirdIndex : ct.monthIndex;
+
+      const exactElapsedDays = state.system === 'ST'
+        ? (timestampMs - EPOCH_ZERO_MS) / 86400000
+        : ct.exactCtDays;
+
+      const chashnacFraction = CHASHNAC_EPOCH_PHASE - (exactElapsedDays / 12);
+      const chashnacPos = getPointOnDiamond(DIAMOND_CHASHNAC, chashnacFraction);
+      const chashnacBirdIndex = getSectorFromPoint(chashnacPos.x, chashnacPos.y);
+
+      const chrysomelaFraction = CHRYSOMELA_EPOCH_PHASE + (exactElapsedDays / 52);
+      const chrysomelaPos = getPointOnDiamond(DIAMOND_CHRYSOMELA, chrysomelaFraction);
+      const chrysomelaBirdIndex = getSectorFromPoint(chrysomelaPos.x, chrysomelaPos.y);
+
+      const moonDist = Math.hypot(chashnacPos.x - chrysomelaPos.x, chashnacPos.y - chrysomelaPos.y);
+      const midX = (chashnacPos.x + chrysomelaPos.x) / 2;
+      const midY = (chashnacPos.y + chrysomelaPos.y) / 2;
+
+      let activeGate = CROSSING_GATES[0];
+      let minGateDist = Infinity;
+      CROSSING_GATES.forEach((gate) => {
+        const d = Math.hypot(midX - gate.x, midY - gate.y);
+        if (d < minGateDist) {
+          minGateDist = d;
+          activeGate = gate;
+        }
+      });
+
+      const isGateAlignment = moonDist <= EXACT_GATE_OVERLAP_DIST && minGateDist <= 2.0;
+
+      return {
+        ct,
+        birthBirdIndex,
+        chashnacPos,
+        chashnacBirdIndex,
+        chrysomelaPos,
+        chrysomelaBirdIndex,
+        activeGate,
+        isGateAlignment,
+        moonDist
+      };
+    }
+
+    function formatDateAndTimeInActiveMode(ms) {
+      if (state.system === 'CT') {
+        const c = getCansacianFromMs(ms);
+        return {
+          dateStr: `${c.dayOfMonth} ${c.monthName} ${formatCtYearInActiveEra(c.ivcYear)} (${c.anquar})`,
+          shortDateStr: `${c.dayOfMonth} ${c.monthName}`,
+          timeStr: `${pad2(c.hour)}:${pad2(c.minute)} CT`
+        };
+      }
+      const d = new Date(ms);
+      return {
+        dateStr: `${d.getDate()} ${ST_MONTH_NAMES[d.getMonth()]} ${formatStYearInActiveEra(d)}`,
+        shortDateStr: `${d.getDate()} ${ST_MONTH_NAMES[d.getMonth()]}`,
+        timeStr: `${pad2(d.getHours())}:${pad2(d.getMinutes())} ST`
+      };
+    }
+
+    function formatDurationMinutes(totalMinutes) {
+      const hrs = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+      if (hrs > 0 && mins > 0) return `${hrs}h ${mins}m`;
+      if (hrs > 0) return `${hrs}h`;
+      return `${mins}m`;
+    }
+
+    function findUpcomingGateDates(fromMs) {
+      const stepMs = 60 * 1000;
+      const totalMinutesToScan = 160 * 30 * 60;
+      const nextByGateId = {};
+      let overallNext = null;
+
+      let inWindow = false;
+      let windowStartMs = 0;
+      let peakMs = 0;
+      let minDistInWindow = Infinity;
+      let windowGate = null;
+
+      for (let m = 1; m <= totalMinutesToScan; m++) {
+        const t = fromMs + m * stepMs;
+        const r = calculatePattaReading(t);
+
+        if (r.isGateAlignment) {
+          if (!inWindow) {
+            inWindow = true;
+            windowStartMs = t;
+            peakMs = t;
+            minDistInWindow = r.moonDist;
+            windowGate = r.activeGate;
+          } else if (r.moonDist < minDistInWindow) {
+            minDistInWindow = r.moonDist;
+            peakMs = t;
+          }
+        } else if (inWindow) {
+          const windowEndMs = t - stepMs;
+          const durationMins = Math.max(1, Math.round((windowEndMs - windowStartMs) / stepMs) + 1);
+          const startFmt = formatDateAndTimeInActiveMode(windowStartMs);
+          const peakFmt = formatDateAndTimeInActiveMode(peakMs);
+          const endFmt = formatDateAndTimeInActiveMode(windowEndMs);
+
+          const fullSummary = `${startFmt.dateStr}, ${startFmt.timeStr} to ${endFmt.timeStr} (peaking at ${peakFmt.timeStr}, lasting ${formatDurationMinutes(durationMins)})`;
+
+          const entry = {
+            gate: windowGate,
+            dateStr: fullSummary,
+            startMs: windowStartMs,
+            peakMs,
+            endMs: windowEndMs,
+            durationMins
+          };
+
+          if (!overallNext) overallNext = entry;
+          if (!nextByGateId[windowGate.id]) nextByGateId[windowGate.id] = entry;
+
+          inWindow = false;
+          minDistInWindow = Infinity;
+          if (Object.keys(nextByGateId).length === 4) break;
+        }
+      }
+
+      return { overallNext, nextByGateId };
+    }
+
+    /**
+     * ============================================================================
+     * 4. APPLICATION STATE & INTERACTIVE UI
+     * ============================================================================
+     */
+    const state = {
+      era: localStorage.getItem('sindh_era') || 'IVC',
+      system: localStorage.getItem('sindh_sys') || 'CT',
+      birthMs: Date.now(),
+      inspectMode: 'BIRD',
+      inspectedBirdIndex: 0,
+      inspectedGateId: 0,
+      owlConnected: false,
+      owlBusy: false,
+      horseDrawerOpen: false,
+      horseActiveIndex: 0,
+      selectedHorseIndex: null,
+      horseHistories: {},
+      startedHorseChats: []
+    };
+
+    function pad2(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function initPatta() {
+      state.birthMs = Date.now();
+      const initialReading = calculatePattaReading(state.birthMs);
+      state.inspectedBirdIndex = initialReading.birthBirdIndex;
+      state.inspectedGateId = initialReading.activeGate.id;
+
+      updateToggleStyles();
+      populateDobControlsFromMs(state.birthMs);
+      renderPatta();
+    }
+
+    function setEra(era) {
+      state.era = era;
+      localStorage.setItem('sindh_era', era);
+      updateToggleStyles();
+      populateDobControlsFromMs(state.birthMs);
+      renderPatta();
+    }
+
+    function setSystem(sys) {
+      if (state.system === sys) return;
+      state.system = sys;
+      localStorage.setItem('sindh_sys', sys);
+      updateToggleStyles();
+      populateDobControlsFromMs(state.birthMs);
+      renderPatta();
+    }
+
+    function setBirthToNow() {
+      state.birthMs = Date.now();
+      const reading = calculatePattaReading(state.birthMs);
+      state.inspectMode = 'BIRD';
+      state.inspectedBirdIndex = reading.birthBirdIndex;
+      state.inspectedGateId = reading.activeGate.id;
+      populateDobControlsFromMs(state.birthMs);
+      renderPatta();
+    }
+
+    function updateToggleStyles() {
+      const activeClass = 'bg-white text-inkDark shadow-sm';
+      const inactiveClass = 'text-inkMuted hover:text-inkDark';
+
+      document.getElementById('btn-era-ivc').className =
+        `px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${state.era === 'IVC' ? activeClass : inactiveClass}`;
+      document.getElementById('btn-era-ce').className =
+        `px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${state.era === 'CE' ? activeClass : inactiveClass}`;
+
+      document.getElementById('btn-sys-ct').className =
+        `px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${state.system === 'CT' ? activeClass : inactiveClass}`;
+      document.getElementById('btn-sys-st').className =
+        `px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${state.system === 'ST' ? activeClass : inactiveClass}`;
+    }
+
+    function populateDobControlsFromMs(ms) {
+      const daySel = document.getElementById('dob-day');
+      const monthSel = document.getElementById('dob-month');
+      const yearInp = document.getElementById('dob-year');
+      const hourSel = document.getElementById('dob-hour');
+      const minSel = document.getElementById('dob-min');
+      const labelEl = document.getElementById('dob-label');
+
+      daySel.innerHTML = '';
+      monthSel.innerHTML = '';
+      hourSel.innerHTML = '';
+      minSel.innerHTML = '';
+
+      for (let m = 0; m < 60; m++) {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = `${pad2(m)}m`;
+        minSel.appendChild(opt);
+      }
+
+      if (state.system === 'CT') {
+        labelEl.textContent = `Date & Time of Birth (CT · 30h Clock)`;
+        const ct = getCansacianFromMs(ms);
+
+        for (let d = 1; d <= 30; d++) {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = `${d}`;
+          daySel.appendChild(opt);
+        }
+
+        CT_MONTHS.forEach((m, idx) => {
+          const opt = document.createElement('option');
+          opt.value = idx;
+          opt.textContent = `${m.name}`;
+          monthSel.appendChild(opt);
+        });
+
+        for (let h = 0; h < 30; h++) {
+          const opt = document.createElement('option');
+          opt.value = h;
+          opt.textContent = `${pad2(h)}h`;
+          hourSel.appendChild(opt);
+        }
+
+        daySel.value = ct.dayOfMonth;
+        monthSel.value = ct.monthIndex;
+        yearInp.value = state.era === 'IVC' ? ct.ivcYear : ctIvcYearToAstroCe(ct.ivcYear);
+        hourSel.value = ct.hour;
+        minSel.value = ct.minute;
+      } else {
+        labelEl.textContent = `Date & Time of Birth (ST · 24h Clock)`;
+        const dObj = new Date(ms);
+        const daysInMonth = new Date(dObj.getFullYear(), dObj.getMonth() + 1, 0).getDate() || 30;
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = `${d}`;
+          daySel.appendChild(opt);
+        }
+
+        ST_MONTH_NAMES.forEach((name, idx) => {
+          const opt = document.createElement('option');
+          opt.value = idx;
+          opt.textContent = name;
+          monthSel.appendChild(opt);
+        });
+
+        for (let h = 0; h < 24; h++) {
+          const opt = document.createElement('option');
+          opt.value = h;
+          opt.textContent = `${pad2(h)}h`;
+          hourSel.appendChild(opt);
+        }
+
+        daySel.value = dObj.getDate();
+        monthSel.value = dObj.getMonth();
+        yearInp.value = state.era === 'IVC' ? getStIvcYear(dObj) : dObj.getFullYear();
+        hourSel.value = dObj.getHours();
+        minSel.value = dObj.getMinutes();
+      }
+    }
+
+    function onDobMonthOrYearChange() {
+      if (state.system === 'ST') {
+        const daySel = document.getElementById('dob-day');
+        const currentDay = parseInt(daySel.value, 10) || 1;
+        const monthIdx = parseInt(document.getElementById('dob-month').value, 10) || 0;
+        const rawYear = parseInt(document.getElementById('dob-year').value, 10);
+        const fallbackYear = state.era === 'IVC' ? 5326 : 2026;
+        const enteredYear = isNaN(rawYear) ? fallbackYear : rawYear;
+        const astroYear = state.era === 'IVC' ? stIvcYearToAstroCe(enteredYear, monthIdx) : enteredYear;
+
+        const d = new Date(0);
+        d.setFullYear(astroYear, monthIdx + 1, 0);
+        const maxDays = d.getDate() || 30;
+
+        daySel.innerHTML = '';
+        for (let day = 1; day <= maxDays; day++) {
+          const opt = document.createElement('option');
+          opt.value = day;
+          opt.textContent = `${day}`;
+          daySel.appendChild(opt);
+        }
+        daySel.value = Math.min(currentDay, maxDays);
+      }
+      onDobInputChange();
+    }
+
+    function onDobInputChange() {
+      const day = parseInt(document.getElementById('dob-day').value, 10) || 1;
+      const monthIdx = parseInt(document.getElementById('dob-month').value, 10) || 0;
+      const rawYear = parseInt(document.getElementById('dob-year').value, 10);
+      const hour = parseInt(document.getElementById('dob-hour').value, 10) || 0;
+      const minute = parseInt(document.getElementById('dob-min').value, 10) || 0;
+
+      if (state.system === 'CT') {
+        const fallbackYear = state.era === 'IVC' ? 4322 : 1022;
+        const enteredYear = isNaN(rawYear) ? fallbackYear : rawYear;
+        const ctIvcYear = state.era === 'IVC' ? enteredYear : astroCeToCtIvcYear(enteredYear);
+        state.birthMs = getMsFromCt(ctIvcYear, monthIdx, day, hour, minute);
+      } else {
+        const fallbackYear = state.era === 'IVC' ? 5326 : 2026;
+        const enteredYear = isNaN(rawYear) ? fallbackYear : rawYear;
+        const astroYear = state.era === 'IVC' ? stIvcYearToAstroCe(enteredYear, monthIdx) : enteredYear;
+        const d = new Date(0);
+        d.setFullYear(astroYear, monthIdx, day);
+        d.setHours(hour, minute, 0, 0);
+        state.birthMs = d.getTime();
+      }
+
+      const reading = calculatePattaReading(state.birthMs);
+      state.inspectMode = 'BIRD';
+      state.inspectedBirdIndex = reading.birthBirdIndex;
+      state.inspectedGateId = reading.activeGate.id;
+      renderPatta();
+    }
+
+    /**
+     * ============================================================================
+     * 5. SVG MANDALA WHEEL & STREAMLINED PLACEMENTS RENDERER
+     * ============================================================================
+     */
+    function polarToCartesian(cx, cy, radius, angleDeg) {
+      const rad = ((angleDeg - 90) * Math.PI) / 180;
+      return {
+        x: cx + radius * Math.cos(rad),
+        y: cy + radius * Math.sin(rad)
+      };
+    }
+
+    function describeWedgePath(cx, cy, rInner, rOuter, startAngle, endAngle) {
+      const p1 = polarToCartesian(cx, cy, rOuter, startAngle);
+      const p2 = polarToCartesian(cx, cy, rOuter, endAngle);
+      const p3 = polarToCartesian(cx, cy, rInner, endAngle);
+      const p4 = polarToCartesian(cx, cy, rInner, startAngle);
+      return [
+        `M ${p1.x} ${p1.y}`,
+        `A ${rOuter} ${rOuter} 0 0 1 ${p2.x} ${p2.y}`,
+        `L ${p3.x} ${p3.y}`,
+        `A ${rInner} ${rInner} 0 0 0 ${p4.x} ${p4.y}`,
+        'Z'
+      ].join(' ');
+    }
+
+    function renderPatta() {
+      const reading = calculatePattaReading(state.birthMs);
+      const {
+        ct,
+        birthBirdIndex,
+        chashnacPos,
+        chashnacBirdIndex,
+        chrysomelaPos,
+        chrysomelaBirdIndex,
+        activeGate,
+        isGateAlignment
+      } = reading;
+
+      const summaryEl = document.getElementById('dob-summary-date');
+      if (state.system === 'CT') {
+        summaryEl.textContent = `${ct.dayOfMonth} ${ct.monthName} ${formatCtYearInActiveEra(ct.ivcYear)} (${ct.anquar}) · ${pad2(ct.hour)}:${pad2(ct.minute)} CT`;
+      } else {
+        const dObj = new Date(state.birthMs);
+        summaryEl.textContent = `${ST_WEEKDAYS[dObj.getDay()]}, ${dObj.getDate()} ${ST_MONTH_NAMES[dObj.getMonth()]} ${formatStYearInActiveEra(dObj)} · ${pad2(dObj.getHours())}:${pad2(dObj.getMinutes())} ST`;
+      }
+
+      const sectorsLayer = document.getElementById('patta-sectors-layer');
+      sectorsLayer.innerHTML = '';
+
+      PATTA_BIRDS.forEach((b, idx) => {
+        const startAngle = idx * 30;
+        const endAngle = startAngle + 30;
+        const midAngle = startAngle + 15;
+        const isHomeBird = idx === birthBirdIndex;
+        const birdColor = b.colors?.[0] || '#7c3aed';
+
+        const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        pathEl.setAttribute('d', describeWedgePath(170, 170, 122, 160, startAngle, endAngle));
+        pathEl.setAttribute('fill', '#ffffff');
+        pathEl.setAttribute('stroke', '#d1d5db');
+        pathEl.setAttribute('stroke-width', isHomeBird ? '2' : '1');
+        sectorsLayer.appendChild(pathEl);
+
+        const dotPos = polarToCartesian(170, 170, 151, midAngle);
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', dotPos.x);
+        dot.setAttribute('cy', dotPos.y);
+        dot.setAttribute('r', isHomeBird ? '4' : '3');
+        dot.setAttribute('fill', birdColor);
+        dot.setAttribute('stroke', '#111827');
+        dot.setAttribute('stroke-width', '1');
+        sectorsLayer.appendChild(dot);
+
+        const labelPos = polarToCartesian(170, 170, 136, midAngle);
+        const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        textEl.setAttribute('x', labelPos.x);
+        textEl.setAttribute('y', labelPos.y);
+        textEl.setAttribute('text-anchor', 'middle');
+        textEl.setAttribute('dominant-baseline', 'middle');
+        textEl.setAttribute('font-size', isHomeBird ? '8.5' : '7.5');
+        textEl.setAttribute('font-weight', isHomeBird ? '800' : '700');
+        textEl.setAttribute('fill', '#111827');
+        textEl.setAttribute('stroke', '#ffffff');
+        textEl.setAttribute('stroke-width', '1.8');
+        textEl.setAttribute('paint-order', 'stroke');
+
+        let rot = midAngle;
+        if (rot > 90 && rot < 270) rot += 180;
+        textEl.setAttribute('transform', `rotate(${rot}, ${labelPos.x}, ${labelPos.y})`);
+        textEl.textContent = b.bird;
+        sectorsLayer.appendChild(textEl);
+      });
+
+      const gatesLayer = document.getElementById('patta-gates-layer');
+      gatesLayer.innerHTML = '';
+
+      CROSSING_GATES.forEach((gate) => {
+        const isUpcoming = gate.id === activeGate.id;
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', gate.x);
+        circle.setAttribute('cy', gate.y);
+        circle.setAttribute('r', isUpcoming ? '6' : '4');
+        circle.setAttribute('fill', isUpcoming ? '#fed403' : '#ffffff');
+        circle.setAttribute('stroke', '#9bb5e3');
+        circle.setAttribute('stroke-width', isUpcoming ? '2' : '1.5');
+        gatesLayer.appendChild(circle);
+      });
+
+      const moonsLayer = document.getElementById('patta-moons-layer');
+      moonsLayer.innerHTML = '';
+
+      const drawMoon = (pos, fillHex, ringHex, orbitHex, outlineHex) => {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '170');
+        line.setAttribute('y1', '170');
+        line.setAttribute('x2', pos.x);
+        line.setAttribute('y2', pos.y);
+        line.setAttribute('stroke', orbitHex);
+        line.setAttribute('stroke-width', '1.2');
+        line.setAttribute('stroke-dasharray', '2.5 2.5');
+        line.setAttribute('stroke-opacity', '0.75');
+        moonsLayer.appendChild(line);
+
+        const halo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        halo.setAttribute('cx', pos.x);
+        halo.setAttribute('cy', pos.y);
+        halo.setAttribute('r', '9');
+        halo.setAttribute('fill', ringHex);
+        halo.setAttribute('fill-opacity', '0.55');
+        moonsLayer.appendChild(halo);
+
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', pos.x);
+        dot.setAttribute('cy', pos.y);
+        dot.setAttribute('r', '5.5');
+        dot.setAttribute('fill', fillHex);
+        dot.setAttribute('stroke', outlineHex);
+        dot.setAttribute('stroke-width', '1.6');
+        moonsLayer.appendChild(dot);
+      };
+
+      drawMoon(chashnacPos, LORE_BOOK.moons.chashnac.color, LORE_BOOK.moons.chashnac.haloColor, LORE_BOOK.moons.chashnac.orbitColor, '#ffffff');
+      drawMoon(chrysomelaPos, LORE_BOOK.moons.chrysomela.color, LORE_BOOK.moons.chrysomela.haloColor, LORE_BOOK.moons.chrysomela.orbitColor, '#4b5563');
+
+      const homeBird = PATTA_BIRDS[birthBirdIndex];
+      const chashnacBird = PATTA_BIRDS[chashnacBirdIndex];
+      const chrysomelaBird = PATTA_BIRDS[chrysomelaBirdIndex];
+
+      const activeGateCardHtml = isGateAlignment ? `
+        <div class="rounded-2xl bg-gradient-to-r from-softYellow/85 via-white to-softPurple/70 border border-amber-300/80 px-3.5 py-2.5 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-accentPurple">Active Gate · Exact Crossing Alignment</div>
+            <div class="text-xs font-extrabold text-inkDark">${activeGate.name}</div>
+          </div>
+          <span class="text-[11px] font-bold text-accentPurple">${activeGate.anquar}</span>
+        </div>
+      ` : '';
+
+      const placementsEl = document.getElementById('patta-placements-list');
+      placementsEl.innerHTML = `
+        <div class="rounded-2xl bg-white border border-purple-100/90 px-3.5 py-2.5 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-inkMuted">Home Bird · Personality</div>
+            <div class="text-xs font-extrabold text-inkDark">${homeBird.bird} <span class="font-semibold text-accentPurple">(${homeBird.month})</span></div>
+          </div>
+          <span class="text-[11px] font-bold text-inkMuted">${homeBird.theme}</span>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-purple-100/90 px-3.5 py-2.5 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-inkDark">Blue Moon · Chashnac · Emotional State</div>
+            <div class="text-xs font-extrabold text-inkDark">${chashnacBird.bird} <span class="font-semibold text-inkDark/70">(${chashnacBird.month})</span></div>
+          </div>
+          <span class="text-[11px] font-bold text-inkDark">${chashnacBird.theme}</span>
+        </div>
+
+        <div class="rounded-2xl bg-white border border-purple-100/90 px-3.5 py-2.5 flex items-center justify-between shadow-sm">
+          <div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-inkDark">White Moon · Chrysomela · Reality</div>
+            <div class="text-xs font-extrabold text-inkDark">${chrysomelaBird.bird} <span class="font-semibold text-inkDark/75">(${chrysomelaBird.month})</span></div>
+          </div>
+          <span class="text-[11px] font-bold text-inkDark">${chrysomelaBird.theme}</span>
+        </div>
+
+        ${activeGateCardHtml}
+      `;
+    }
+
+    /**
+     * ============================================================================
+     * 6. HORSE ORACLE — 4-CARD COVER FLOW, TYPO RESPONSE & KEYWORD-DRIVEN CHAT
+     * ============================================================================
+     */
+    const HORSE_CARD_PALETTES = [
+      { bg: 'from-softPurple via-white to-softYellow', badge: 'bg-softPurple text-accentPurple', accent: '#c4b5fd' },
+      { bg: 'from-softYellow via-white to-softPink', badge: 'bg-babyYellow/80 text-inkDark', accent: '#fed403' },
+      { bg: 'from-softPink via-white to-softPurple', badge: 'bg-pastelPink text-inkDark', accent: '#f9a8d4' },
+      { bg: 'from-softYellow via-white to-softPurple', badge: 'bg-babyYellow/80 text-inkDark', accent: '#fed403' }
+    ];
+
+    const HORSE_CARDS = (window.HORSE_PROFILES || []).slice(0, 4).map((profile, idx) => ({
+      index: idx,
+      number: profile.number || String(idx + 1).padStart(2, '0'),
+      name: profile.name,
+      avatarType: profile.avatarType || 'colt',
+      silhouetteColor: profile.silhouetteColor || '#1e1b4b',
+      traits: profile.traits || [],
+      description: profile.description,
+      openingLine: profile.openingLine || profile.description,
+      typoReply: profile.typoReply || "Looks like a typo—could you send that again?",
+      voiceGuide: profile.voiceGuide || '',
+      palette: HORSE_CARD_PALETTES[idx % HORSE_CARD_PALETTES.length]
+    }));
+
+    function getHorseCardSvg(avatarType, color) {
+      if (avatarType === 'mare') {
+        return `
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-9 h-9">
+            <!-- Delicate Mare Ears Outline -->
+            <path d="M41 35 L33 17 L50 29" fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M79 35 L87 17 L70 29" fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Graceful Front Mare Head Outline -->
+            <path d="M41 35 C34 43, 34 55, 40 65 L48 86 C51 93, 69 93, 72 86 L80 65 C86 55, 86 43, 79 35 C73 29, 67 27, 60 27 C53 27, 47 29, 41 35 Z"
+              fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Soft Forehead Crown Blossom / Star -->
+            <circle cx="60" cy="38" r="2.6" fill="${color}" />
+            <circle cx="52" cy="40" r="1.8" fill="${color}" />
+            <circle cx="68" cy="40" r="1.8" fill="${color}" />
+            <!-- Gentle Eyes & Nostrils -->
+            <circle cx="46" cy="55" r="2.8" fill="${color}" />
+            <circle cx="74" cy="55" r="2.8" fill="${color}" />
+            <circle cx="54" cy="79" r="2.1" fill="${color}" />
+            <circle cx="66" cy="79" r="2.1" fill="${color}" />
+          </svg>
+        `;
+      }
+
+      return `
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-9 h-9">
+          <!-- Dapper Perky Ears Outline -->
+          <path d="M40 34 L33 16 L50 28" fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M80 34 L87 16 L70 28" fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- Front-Facing Colt Head Outline -->
+          <path d="M40 34 C34 41, 34 52, 40 61 L47 76 C50 82, 70 82, 73 76 L80 61 C86 52, 86 41, 80 34 C74 28, 67 26, 60 26 C53 26, 46 28, 40 34 Z"
+            fill="none" stroke="${color}" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+          <!-- Dapper Parted Forelock -->
+          <path d="M49 31 Q56 38 62 32 Q67 37 72 31" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" />
+          <!-- Friendly Eyes & Nostrils -->
+          <circle cx="46" cy="50" r="2.8" fill="${color}" />
+          <circle cx="74" cy="50" r="2.8" fill="${color}" />
+          <circle cx="54" cy="68" r="2" fill="${color}" />
+          <circle cx="66" cy="68" r="2" fill="${color}" />
+          <!-- Crisp Outlined Bow-Tie Below Muzzle -->
+          <path d="M55 92 L41 84 C38.5 83, 37 84.5, 37 87 L37 98 C37 100.5, 38.5 102, 41 101 L55 93"
+            fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M65 92 L79 84 C81.5 83, 83 84.5, 83 87 L83 98 C83 100.5, 81.5 102, 79 101 L65 93"
+            fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="55.5" y="87" width="9" height="11" rx="2.5" fill="none" stroke="${color}" stroke-width="4.5" />
+        </svg>
+      `;
+    }
+
+    let coverFlowInitialized = false;
+
+    const DEFAULT_ORACLE_HEADER_SVG = `
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+        <path d="M60 28 C53 28, 48 30, 44 33 L32 18 L34 40 C29 47, 29 56, 34 64 L43 84 C46 92, 52 97, 60 97 C68 97, 74 92, 77 84 L86 64 C91 56, 91 47, 86 40 L88 18 L76 33 C72 30, 67 28, 60 28 Z"
+          fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M60 39 C57 46, 57 54, 60 61 C63 54, 63 46, 60 39 Z" fill="#7c3aed" />
+        <circle cx="44" cy="51" r="2.8" fill="#7c3aed" />
+        <circle cx="76" cy="51" r="2.8" fill="#7c3aed" />
+        <circle cx="53" cy="83" r="2.3" fill="#7c3aed" />
+        <circle cx="67" cy="83" r="2.3" fill="#7c3aed" />
+      </svg>
+    `;
+
+    function mountDobSelector(target) {
+      const dobCard = document.getElementById('dob-selector-card');
+      const mainAnchor = document.getElementById('main-dob-anchor');
+      const oracleSlot = document.getElementById('oracle-dob-slot');
+      const togglesGroup = document.getElementById('era-sys-toggles');
+      const mainTogglesAnchor = document.getElementById('main-toggles-anchor');
+      const oracleTogglesSlot = document.getElementById('oracle-toggles-slot');
+      if (!dobCard || !mainAnchor || !oracleSlot) return;
+
+      if (target === 'oracle') {
+        if (togglesGroup && oracleTogglesSlot) {
+          oracleTogglesSlot.classList.remove('hidden');
+          oracleTogglesSlot.appendChild(togglesGroup);
+        }
+        oracleSlot.classList.remove('hidden');
+        oracleSlot.appendChild(dobCard);
+      } else {
+        if (togglesGroup && mainTogglesAnchor && oracleTogglesSlot) {
+          oracleTogglesSlot.classList.add('hidden');
+          mainTogglesAnchor.parentNode.insertBefore(togglesGroup, mainTogglesAnchor);
+        }
+        oracleSlot.classList.add('hidden');
+        mainAnchor.parentNode.insertBefore(dobCard, mainAnchor);
+      }
+    }
+
+    function openOwlOracle() {
+      const modal = document.getElementById('owl-modal');
+      modal.classList.remove('hidden');
+
+      if (!state.owlConnected) {
+        mountDobSelector('main');
+        document.getElementById('oracle-header-title').textContent = 'The Horse Oracle';
+        document.getElementById('oracle-header-avatar').innerHTML = DEFAULT_ORACLE_HEADER_SVG;
+        document.getElementById('btn-horse-chat-back').classList.add('hidden');
+        document.getElementById('owl-status-subtitle').textContent = state.owlConnecting
+          ? 'Loading Horse Brain · First-Time Setup'
+          : 'Offline Mode · Awaiting Permission';
+        document.getElementById('owl-permission-view').classList.remove('hidden');
+        document.getElementById('owl-chat-view').classList.add('hidden');
+      } else {
+        showConnectedHorseView();
+      }
+    }
+
+    function closeOwlOracle() {
+      mountDobSelector('main');
+      document.getElementById('owl-modal').classList.add('hidden');
+    }
+
+    function updateInitProgressUI(percent, label) {
+      const clamped = Math.max(0, Math.min(100, Math.round(percent)));
+      const bar = document.getElementById('owl-init-progress-bar');
+      const pctEl = document.getElementById('owl-init-percent-text');
+      const statusEl = document.getElementById('owl-init-status-text');
+      const subtitleEl = document.getElementById('owl-status-subtitle');
+
+      if (bar) bar.style.width = `${clamped}%`;
+      if (pctEl) pctEl.textContent = `${clamped}%`;
+      if (statusEl && label) statusEl.textContent = label;
+      if (subtitleEl && !state.owlConnected) {
+        subtitleEl.textContent = `Loading Horse Brain (${clamped}%)...`;
+      }
+    }
+
+    async function confirmOwlConnection() {
+      if (state.owlConnected) {
+        showConnectedHorseView();
+        return;
+      }
+      if (state.owlConnecting) return;
+
+      state.owlConnecting = true;
+      const progressBox = document.getElementById('owl-init-progress-box');
+      const actionsBox = document.getElementById('owl-permission-actions');
+      if (progressBox) progressBox.classList.remove('hidden');
+      if (actionsBox) actionsBox.classList.add('hidden');
+
+      updateInitProgressUI(4, 'Connecting & preparing Horse brain...');
+
+      try {
+        await getLocalBrowserLLM((pct, statusText) => {
+          updateInitProgressUI(pct, statusText);
+        });
+        updateInitProgressUI(100, 'All 4 Horses are awake!');
+      } catch (_) {
+        updateInitProgressUI(100, 'Connected!');
+      } finally {
+        state.owlConnecting = false;
+        state.owlConnected = true;
+        setTimeout(() => {
+          showConnectedHorseView();
+        }, 280);
+      }
+    }
+
+    function showConnectedHorseView() {
+      mountDobSelector('oracle');
+      document.getElementById('owl-permission-view').classList.add('hidden');
+      document.getElementById('owl-chat-view').classList.remove('hidden');
+      updateHorseDrawerUI();
+    }
+
+    function toggleHorseCoverFlow() {
+      if (state.selectedHorseIndex !== null) {
+        state.selectedHorseIndex = null;
+        state.horseDrawerOpen = true;
+      } else {
+        state.horseDrawerOpen = !state.horseDrawerOpen;
+      }
+
+      if (state.horseDrawerOpen && !coverFlowInitialized) {
+        initHorseCoverFlow();
+        coverFlowInitialized = true;
+      }
+      updateHorseDrawerUI();
+    }
+
+    function backToHorseCarousel() {
+      state.selectedHorseIndex = null;
+      state.horseDrawerOpen = false;
+      updateHorseDrawerUI();
+    }
+
+    function updateHorseDrawerUI() {
+      const idleEl = document.getElementById('horse-idle-state');
+      const contactsViewEl = document.getElementById('horse-contacts-view');
+      const drawerEl = document.getElementById('horse-coverflow-drawer');
+      const chatEl = document.getElementById('horse-active-chat');
+      const plusBtn = document.getElementById('btn-horse-plus');
+      const plusIcon = document.getElementById('icon-horse-plus');
+      const backBtn = document.getElementById('btn-horse-chat-back');
+      const headerTitle = document.getElementById('oracle-header-title');
+      const headerSubtitle = document.getElementById('owl-status-subtitle');
+      const headerAvatar = document.getElementById('oracle-header-avatar');
+
+      if (state.selectedHorseIndex !== null) {
+        const horse = HORSE_CARDS[state.selectedHorseIndex];
+        idleEl.classList.add('hidden');
+        contactsViewEl.classList.add('hidden');
+        drawerEl.classList.add('hidden');
+        chatEl.classList.remove('hidden');
+        plusBtn.classList.add('hidden');
+        backBtn.classList.remove('hidden');
+
+        headerTitle.textContent = horse.name;
+        headerSubtitle.textContent = horse.traits.slice(0, 3).join(' · ');
+        headerAvatar.innerHTML = getHorseCardSvg(horse.avatarType, horse.silhouetteColor).replace('w-9 h-9', 'w-6 h-6');
+        return;
+      }
+
+      backBtn.classList.add('hidden');
+      chatEl.classList.add('hidden');
+      plusBtn.classList.remove('hidden');
+      headerTitle.textContent = 'The Horse Oracle';
+      headerSubtitle.textContent = 'Connected · 4 Horse Friends';
+      headerAvatar.innerHTML = DEFAULT_ORACLE_HEADER_SVG;
+
+      if (state.horseDrawerOpen) {
+        idleEl.classList.add('hidden');
+        contactsViewEl.classList.add('hidden');
+        drawerEl.classList.remove('hidden');
+        plusIcon.style.transform = 'rotate(45deg)';
+        updateHorseCoverFlow();
+      } else {
+        drawerEl.classList.add('hidden');
+        plusIcon.style.transform = 'rotate(0deg)';
+        if (state.startedHorseChats.length > 0) {
+          idleEl.classList.add('hidden');
+          contactsViewEl.classList.remove('hidden');
+          renderHorseContactsList();
+        } else {
+          contactsViewEl.classList.add('hidden');
+          idleEl.classList.remove('hidden');
+        }
+      }
+    }
+
+    function renderHorseContactsList() {
+      const listEl = document.getElementById('horse-contacts-list');
+      const countEl = document.getElementById('horse-contacts-count');
+      if (!listEl) return;
+
+      if (countEl) {
+        countEl.textContent = String(state.startedHorseChats.length);
+      }
+
+      listEl.innerHTML = '';
+
+      state.startedHorseChats.forEach((horseIdx) => {
+        const horse = HORSE_CARDS[horseIdx];
+        const history = state.horseHistories[horseIdx] || [];
+        const lastMsg = history[history.length - 1];
+        const previewText = lastMsg ? lastMsg.text : horse.openingLine;
+
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.onclick = () => selectHorseForChat(horseIdx);
+        row.className = 'w-full rounded-2xl bg-white/90 hover:bg-softPurple/40 border border-purple-100/90 px-3 py-2.5 flex items-center gap-3 text-left shadow-sm transition-all active:scale-[0.99]';
+
+        row.innerHTML = `
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${horse.palette.bg} border border-purple-100 flex items-center justify-center shrink-0">
+            ${getHorseCardSvg(horse.avatarType, horse.silhouetteColor).replace('w-9 h-9', 'w-7 h-7')}
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold text-inkDark truncate">${horse.name}</span>
+              <span class="text-[9px] font-bold text-accentPurple shrink-0">${horse.traits[0]}</span>
+            </div>
+            <p class="text-[11px] text-inkMuted truncate mt-0.5">${previewText}</p>
+          </div>
+          <span class="text-inkMuted font-bold text-xs shrink-0">›</span>
+        `;
+
+        listEl.appendChild(row);
+      });
+    }
+
+    function selectHorseForChat(idx) {
+      state.selectedHorseIndex = idx;
+      state.horseDrawerOpen = false;
+      const horse = HORSE_CARDS[idx];
+
+      if (!state.horseHistories[idx]) {
+        state.horseHistories[idx] = [
+          { role: 'model', text: horse.openingLine }
+        ];
+      }
+
+      renderHorseChatMessages();
+      updateHorseDrawerUI();
+    }
+
+    function renderHorseChatMessages() {
+      const container = document.getElementById('horse-chat-messages');
+      if (!container || state.selectedHorseIndex === null) return;
+      const history = state.horseHistories[state.selectedHorseIndex] || [];
+      container.innerHTML = '';
+
+      history.forEach((msg) => {
+        const bubble = document.createElement('div');
+        if (msg.role === 'user') {
+          bubble.className = 'ml-8 rounded-2xl rounded-br-sm bg-accentPurple text-white px-3.5 py-2 shadow-sm text-xs leading-relaxed whitespace-pre-wrap';
+        } else {
+          bubble.className = 'mr-4 rounded-2xl rounded-bl-sm bg-white border border-purple-100 text-inkDark px-3.5 py-2.5 shadow-sm text-xs leading-relaxed whitespace-pre-wrap';
+        }
+        bubble.textContent = msg.text;
+        container.appendChild(bubble);
+      });
+
+      if (state.owlBusy) {
+        const typing = document.createElement('div');
+        typing.id = 'horse-typing-indicator';
+        typing.className = 'mr-4 inline-flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/90 border border-purple-100 px-3.5 py-2.5 shadow-sm';
+        typing.innerHTML = buildHorseDotsHtml(state.localAiStatus);
+        container.appendChild(typing);
+      }
+
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function buildHorseDotsHtml(statusText) {
+      const horseName = HORSE_CARDS[state.selectedHorseIndex]?.name || 'Horse';
+      const isTypingPhase = typeof statusText === 'string' && /typing/i.test(statusText);
+      const modeClass = isTypingPhase ? 'horse-dots-typing' : 'horse-dots-thinking';
+      const ariaLabel = isTypingPhase ? `${horseName} is typing` : `${horseName} is thinking`;
+
+      return `
+        <span class="inline-flex items-center gap-1 h-3.5 ${modeClass}" role="status" aria-label="${ariaLabel}">
+          <span class="horse-dot"></span>
+          <span class="horse-dot"></span>
+          <span class="horse-dot"></span>
+        </span>
+      `;
+    }
+
+    function setLocalAiStatus(text) {
+      state.localAiStatus = text;
+      const el = document.getElementById('horse-typing-indicator');
+      if (el) {
+        el.innerHTML = buildHorseDotsHtml(text);
+      }
+    }
+
+    /**
+     * Typo & Keyboard-Mash Detector
+     */
+    const VALID_SHORT_SLANG = new Set([
+      'brb', 'idk', 'tbh', 'ngl', 'nvm', 'wyd', 'hru', 'rn', 'pls', 'plz', 'thx', 'ty',
+      'np', 'btw', 'omg', 'wtf', 'smh', 'irl', 'fr', 'gg', 'wp', 'gn', 'gm', 'hm', 'hmm',
+      'shh', 'psst', 'ct', 'st', 'ivc', 'ce', 'anq', 'rup', 'ok', 'u', 'r', 'y', 'w', 'n', 'm'
+    ]);
+
+    const KEYBOARD_MASH_SEQS = [
+      'qwer', 'wert', 'erty', 'rtyu', 'tyui', 'yuio', 'uiop',
+      'asdf', 'sdfg', 'dfgh', 'fghj', 'ghjk', 'hjkl',
+      'zxcv', 'xcvb', 'cvbn', 'vbnm',
+      'poiu', 'oiuy', 'iuyt', 'uytr', 'ytre', 'trew', 'rewq',
+      'lkjh', 'kjhg', 'jhgf', 'hgfd', 'gfds', 'fdsa',
+      'mnbv', 'nbvc', 'bvcx', 'vcxz',
+      'qaz', 'wsx', 'edc', 'rfv', 'tgb', 'yhn', 'ujm'
+    ];
+
+    const COMMON_TYPO_TOKENS = new Set([
+      'teh', 'waht', 'jsut', 'adn', 'taht', 'wiht', 'hwo', 'yuo', 'ahve', 'cna', 'iwll',
+      'abotu', 'becuase', 'shoudl', 'woudl', 'coudl', 'thier', 'freind', 'chartt',
+      'horocope', 'horosocpe', 'cosmqiue', 'taniskha', 'mollp', 'moneydeww', 'helol',
+      'helo', 'hllo', 'whta', 'hwat', 'yeha', 'yeps', 'npoe', 'thnaks', 'thansk', 'sorrry',
+      'plase', 'plesae', 'palce', 'birht', 'brith', 'mmon', 'mooon', 'birtd', 'brid'
+    ]);
+
+    function isTypoMessage(text) {
+      const trimmed = (text || '').trim();
+      if (!trimmed) return false;
+      if (!/[a-zA-Z0-9]/.test(trimmed)) return true;
+
+      const lower = trimmed.toLowerCase();
+      const lettersOnly = lower.replace(/[^a-z]/g, '');
+      if (lettersOnly.length >= 4) {
+        for (const seq of KEYBOARD_MASH_SEQS) {
+          if (lettersOnly.includes(seq)) return true;
+        }
+      }
+
+      const rawTokens = trimmed.split(/\s+/).filter(Boolean);
+      let typoTokenCount = 0;
+
+      for (const rawTok of rawTokens) {
+        const core = rawTok.replace(/^[.,!?;:"'()\[\]{}]+|[.,!?;:"'()\[\]{}]+$/g, '');
+        if (!core) continue;
+        const lowCore = core.toLowerCase();
+
+        if (/[a-z][;\/\\\[\]=+*<>~`][a-z]/i.test(core)) {
+          return true;
+        }
+
+        if (/[a-z]\d+[a-z]/i.test(core) || (/^\d+[a-z]+$/i.test(core) && !/^\d+(h|m|d|st|nd|rd|th)$/i.test(core))) {
+          return true;
+        }
+
+        const alpha = lowCore.replace(/[^a-z]/g, '');
+        if (!alpha) continue;
+
+        if (COMMON_TYPO_TOKENS.has(alpha)) {
+          typoTokenCount++;
+          continue;
+        }
+
+        if (/([a-z])\1{3,}/.test(alpha)) {
+          return true;
+        }
+
+        if (alpha.length >= 3 && !/[aeiouy]/.test(alpha) && !VALID_SHORT_SLANG.has(alpha)) {
+          return true;
+        }
+
+        if (/[bcdfghjklmnpqrstvwxz]{5,}/.test(alpha)) {
+          return true;
+        }
+      }
+
+      if (typoTokenCount >= 1 && rawTokens.length <= 3) return true;
+      if (typoTokenCount >= 2) return true;
+
+      return false;
+    }
+
+    /**
+     * In-Browser Neural LLM running inside a dedicated Web Worker
+     */
+    let localGeneratorPromise = null;
+    let horseBrainWorker = null;
+    let horseBrainWorkerUrl = null;
+    let horseBrainWakeLock = null;
+    let horseBrainReqCounter = 0;
+    const horseBrainPendingRequests = new Map();
+    const horseBrainProgressListeners = new Set();
+
+    async function acquireHorseBrainWakeLock() {
+      try {
+        if ('wakeLock' in navigator && document.visibilityState === 'visible' && !horseBrainWakeLock) {
+          horseBrainWakeLock = await navigator.wakeLock.request('screen');
+          horseBrainWakeLock.addEventListener('release', () => {
+            horseBrainWakeLock = null;
+          });
+        }
+      } catch (_) {}
+    }
+
+    function releaseHorseBrainWakeLock() {
+      try {
+        if (horseBrainWakeLock) {
+          horseBrainWakeLock.release();
+          horseBrainWakeLock = null;
+        }
+      } catch (_) {}
+    }
+
+    function notifyHorseBrainProgress(pct, statusText) {
+      horseBrainProgressListeners.forEach((fn) => {
+        try { fn(pct, statusText); } catch (_) {}
+      });
+    }
+
+    function createHorseBrainWorker() {
+      const workerCode = `
+        let generatorPromise = null;
+        const fileProgress = {};
+
+        async function ensureGenerator() {
+          if (!generatorPromise) {
+            generatorPromise = (async () => {
+              self.postMessage({ type: 'progress', pct: 8, statusText: 'Loading neural engine...' });
+              const { pipeline, env, TextStreamer } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.4.0');
+              env.allowLocalModels = false;
+              self.postMessage({ type: 'progress', pct: 15, statusText: 'Downloading Horse mentality...' });
+
+              const progressCallback = (info) => {
+                  if (!info) return;
+                  if (info.file && typeof info.progress === 'number') {
+                    fileProgress[info.file] = info.progress;
+                    const vals = Object.values(fileProgress);
+                    const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+                    const scaledPct = 15 + avg * 0.82;
+                    self.postMessage({ type: 'progress', pct: scaledPct, statusText: 'Downloading Horse mentality...' });
+                  } else if (typeof info.progress === 'number') {
+                    const scaledPct = 15 + info.progress * 0.82;
+                    self.postMessage({ type: 'progress', pct: scaledPct, statusText: 'Downloading Horse mentality...' });
+                  }
+              };
+              const modelId = 'onnx-community/Qwen2.5-0.5B-Instruct';
+              let generator = null;
+              if (self.navigator && self.navigator.gpu) {
+                try {
+                  self.postMessage({ type: 'progress', pct: 12, statusText: 'Starting browser GPU...' });
+                  generator = await pipeline('text-generation', modelId, {
+                    dtype: 'q4',
+                    device: 'webgpu',
+                    progress_callback: progressCallback
+                  });
+                } catch (gpuError) {
+                  console.warn('Horse Oracle WebGPU unavailable; using CPU inference.', gpuError);
+                }
+              }
+              if (!generator) {
+                generator = await pipeline('text-generation', modelId, {
+                  dtype: 'q4',
+                  progress_callback: progressCallback
+                });
+              }
+              self.postMessage({ type: 'progress', pct: 98, statusText: 'Finalizing horse personalities...' });
+              return generator;
+            })().catch((err) => {
+              generatorPromise = null;
+              throw err;
+            });
+          }
+          return generatorPromise;
+        }
+
+        self.onmessage = async (e) => {
+          const msg = e.data || {};
+          if (msg.type === 'ping') {
+            self.postMessage({ type: 'pong', id: msg.id });
+            return;
+          }
+          if (msg.type === 'init') {
+            try {
+              await ensureGenerator();
+              self.postMessage({ type: 'init_done', id: msg.id });
+            } catch (err) {
+              self.postMessage({ type: 'error', id: msg.id, message: err?.message || 'Init failed' });
+            }
+            return;
+          }
+          if (msg.type === 'generate') {
+            try {
+              const generator = await ensureGenerator();
+              const streamer = new TextStreamer(generator.tokenizer, {
+                skip_prompt: true,
+                skip_special_tokens: true,
+                callback_function: (text) => {
+                  if (text) self.postMessage({ type: 'token', id: msg.id, text });
+                }
+              });
+              const output = await generator(msg.chatMessages, { ...msg.options, streamer });
+              self.postMessage({ type: 'generate_done', id: msg.id, output });
+            } catch (err) {
+              self.postMessage({ type: 'error', id: msg.id, message: err?.message || 'Generate failed' });
+            }
+          }
+        };
+      `;
+
+      if (!horseBrainWorkerUrl) {
+        const blob = new Blob([workerCode], { type: 'application/javascript' });
+        horseBrainWorkerUrl = URL.createObjectURL(blob);
+      }
+
+      const worker = new Worker(horseBrainWorkerUrl, { type: 'module' });
+      worker.onmessage = (e) => {
+        const msg = e.data || {};
+        if (msg.type === 'progress') {
+          setLocalAiStatus(`${msg.statusText} (${Math.round(msg.pct)}%)...`);
+          notifyHorseBrainProgress(msg.pct, msg.statusText);
+          return;
+        }
+        const pending = horseBrainPendingRequests.get(msg.id);
+        if (msg.type === 'token') {
+          if (pending?.onToken) pending.onToken(msg.text);
+          return;
+        }
+        if (!pending) return;
+        horseBrainPendingRequests.delete(msg.id);
+        if (msg.type === 'error') {
+          pending.reject(new Error(msg.message));
+        } else {
+          pending.resolve(msg);
+        }
+      };
+      worker.onerror = (err) => {
+        horseBrainPendingRequests.forEach((p) => p.reject(err));
+        horseBrainPendingRequests.clear();
+      };
+      return worker;
+    }
+
+    function sendWorkerMessage(worker, payload, onToken) {
+      const id = ++horseBrainReqCounter;
+      return new Promise((resolve, reject) => {
+        horseBrainPendingRequests.set(id, { resolve, reject, onToken });
+        worker.postMessage({ ...payload, id });
+      });
+    }
+
+    async function loadMainThreadFallbackLLM() {
+      setLocalAiStatus('Waking up built-in Horse brain (just a moment)...');
+      notifyHorseBrainProgress(8, 'Loading neural engine...');
+      const { pipeline, env, TextStreamer } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.4.0');
+      env.allowLocalModels = false;
+      notifyHorseBrainProgress(15, 'Downloading Horse mentality...');
+
+      const fileProgress = {};
+      const progressCallback = (info) => {
+          if (!info) return;
+          if (info.file && typeof info.progress === 'number') {
+            fileProgress[info.file] = info.progress;
+            const vals = Object.values(fileProgress);
+            const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+            const scaledPct = 15 + avg * 0.82;
+            setLocalAiStatus(`Downloading Horse mentality (${Math.round(scaledPct)}%)...`);
+            notifyHorseBrainProgress(scaledPct, 'Downloading Horse mentality...');
+          } else if (typeof info.progress === 'number') {
+            const scaledPct = 15 + info.progress * 0.82;
+            setLocalAiStatus(`Downloading Horse mentality (${Math.round(scaledPct)}%)...`);
+            notifyHorseBrainProgress(scaledPct, 'Downloading Horse mentality...');
+          }
+      };
+      const modelId = 'onnx-community/Qwen2.5-0.5B-Instruct';
+      let generator = null;
+      if (navigator.gpu) {
+        try {
+          setLocalAiStatus('Starting browser GPU...');
+          generator = await pipeline('text-generation', modelId, {
+            dtype: 'q4',
+            device: 'webgpu',
+            progress_callback: progressCallback
+          });
+        } catch (gpuError) {
+          console.warn('Horse Oracle WebGPU unavailable; using CPU inference.', gpuError);
+        }
+      }
+      if (!generator) {
+        generator = await pipeline('text-generation', modelId, {
+          dtype: 'q4',
+          progress_callback: progressCallback
+        });
+      }
+      notifyHorseBrainProgress(98, 'Finalizing horse personalities...');
+      return {
+        mode: 'main',
+        run: (chatMessages, options, onToken) => {
+          const streamer = new TextStreamer(generator.tokenizer, {
+            skip_prompt: true,
+            skip_special_tokens: true,
+            callback_function: (text) => {
+              if (text && onToken) onToken(text);
+            }
+          });
+          return generator(chatMessages, { ...options, streamer });
+        }
+      };
+    }
+
+    document.addEventListener('visibilitychange', async () => {
+      if (document.visibilityState === 'visible' && state.owlConnecting) {
+        await acquireHorseBrainWakeLock();
+        if (horseBrainWorker) {
+          const pingId = ++horseBrainReqCounter;
+          let alive = false;
+          const pingTimer = setTimeout(() => {
+            if (!alive && state.owlConnecting) {
+              horseBrainPendingRequests.delete(pingId);
+              try { horseBrainWorker.terminate(); } catch (_) {}
+              horseBrainWorker = createHorseBrainWorker();
+              sendWorkerMessage(horseBrainWorker, { type: 'init' }).catch(() => {});
+            }
+          }, 1500);
+          horseBrainPendingRequests.set(pingId, {
+            resolve: () => {
+              alive = true;
+              clearTimeout(pingTimer);
+            },
+            reject: () => {
+              clearTimeout(pingTimer);
+            }
+          });
+          try {
+            horseBrainWorker.postMessage({ type: 'ping', id: pingId });
+          } catch (_) {
+            clearTimeout(pingTimer);
+          }
+        }
+      }
+    });
+
+    async function getLocalBrowserLLM(onProgress) {
+      if (onProgress) horseBrainProgressListeners.add(onProgress);
+
+      if (!localGeneratorPromise) {
+        localGeneratorPromise = (async () => {
+          await acquireHorseBrainWakeLock();
+          setLocalAiStatus('Waking up built-in Horse brain (just a moment)...');
+          notifyHorseBrainProgress(8, 'Loading neural engine...');
+
+          try {
+            if (!horseBrainWorker) {
+              horseBrainWorker = createHorseBrainWorker();
+            }
+            await sendWorkerMessage(horseBrainWorker, { type: 'init' });
+            return {
+              mode: 'worker',
+                run: async (chatMessages, options, onToken) => {
+                const res = await sendWorkerMessage(horseBrainWorker, {
+                  type: 'generate',
+                  chatMessages,
+                  options
+                  }, onToken);
+                return res.output;
+              }
+            };
+          } catch (_) {
+            if (horseBrainWorker) {
+              try { horseBrainWorker.terminate(); } catch (__) {}
+              horseBrainWorker = null;
+            }
+            return await loadMainThreadFallbackLLM();
+          }
+        })().catch((err) => {
+          localGeneratorPromise = null;
+          throw err;
+        }).finally(() => {
+          releaseHorseBrainWakeLock();
+        });
+      }
+
+      try {
+        return await localGeneratorPromise;
+      } finally {
+        if (onProgress) horseBrainProgressListeners.delete(onProgress);
+      }
+    }
+
+    async function generateWithLocalBrowserLLM(horse, history, systemPrompt, onToken) {
+      const generatorHandle = await getLocalBrowserLLM();
+      setLocalAiStatus(`${horse.name} is typing...`);
+
+      const chatMessages = [
+        { role: 'system', content: systemPrompt },
+        ...history.slice(-4).map((turn) => ({
+          role: turn.role === 'user' ? 'user' : 'assistant',
+          content: turn.text
+        }))
+      ];
+
+      const output = await generatorHandle.run(chatMessages, {
+        max_new_tokens: 64,
+        do_sample: false,
+        repetition_penalty: 1.08
+      }, onToken);
+
+      const generated = output?.[0]?.generated_text;
+      if (Array.isArray(generated)) {
+        const lastMsg = generated[generated.length - 1];
+        return lastMsg?.content?.trim() || null;
+      }
+      return typeof generated === 'string' ? generated.trim() : null;
+    }
+
+    /**
+     * Safeguard that strips markdown asterisks/formatting and guarantees
+     * no reply ever ends with a cut-off or dangling fragment.
+     */
+    function cleanCompleteSentences(rawText) {
+      const cleaned = (rawText || '')
+        .replace(/\*{1,3}([^*\n]+?)\*{1,3}/g, '$1')
+        .replace(/\*/g, '')
+        .replace(/_{1,2}([^_\n]+?)_{1,2}/g, '$1')
+        .replace(/`([^`\n]+?)`/g, '$1')
+        .replace(/^\s*#{1,6}\s+/gm, '')
+        .replace(/^\s*[-•]\s+/gm, '')
+        .replace(/[ \t]+/g, ' ')
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+      if (!cleaned) {
+        return "Hmm, give me one second—say that again?";
+      }
+
+      if (/[.!?…]["'”’)\]]*$/.test(cleaned)) {
+        return cleaned;
+      }
+
+      const matches = [...cleaned.matchAll(/[.!?…]["'”’)\]]*(?=\s|$)/g)];
+      if (matches.length > 0) {
+        const lastMatch = matches[matches.length - 1];
+        const cutoffIndex = lastMatch.index + lastMatch[0].length;
+        const trimmed = cleaned.slice(0, cutoffIndex).trim();
+        if (trimmed.length >= 12) {
+          return trimmed;
+        }
+      }
+
+      const withoutDanglingTail = cleaned
+        .replace(/[,;:\-–—]+$/, '')
+        .replace(/\b(and|or|but|so|because|when|while|with|to|for|of|in|on|at|that|which|who|a|an|the)$/i, '')
+        .trim();
+
+      return `${withoutDanglingTail || cleaned}.`;
+    }
+
+    /**
+     * Builds the system prompt using Bird KEYWORDS only (never literal bird life lore),
+     * enforcing plain-text output without markdown asterisks.
+     */
+    function buildHorseSystemInstruction(horse) {
+      const reading = calculatePattaReading(state.birthMs);
+      const nowCt = getCansacianFromMs(Date.now());
+      const birthCt = reading.ct;
+      const homeBird = PATTA_BIRDS[reading.birthBirdIndex];
+      const chashnacBird = PATTA_BIRDS[reading.chashnacBirdIndex];
+      const chrysomelaBird = PATTA_BIRDS[reading.chrysomelaBirdIndex];
+      const cansacianAge = Math.max(0, nowCt.ivcYear - birthCt.ivcYear);
+      const upcomingGates = findUpcomingGateDates(Date.now());
+
+      const birthStamp = document.getElementById('dob-summary-date')?.textContent || '';
+      const gateStatus = reading.isGateAlignment
+        ? `Active Crossing Gate at birth: ${reading.activeGate.name} (${reading.activeGate.direction}, ${reading.activeGate.anquar})`
+        : `No active Crossing Gate at birth (nearest axis: ${reading.activeGate.name}).`;
+
+      const nextGateText = upcomingGates.overallNext
+        ? `${upcomingGates.overallNext.gate.name}: ${upcomingGates.overallNext.dateStr}`
+        : 'None in immediate window';
+
+      return `You are ${horse.name}, talking one-on-one with the user as their friend in "Your Patta · Cansacian Birth Chart".
+
+PERSONALITY & VOICE (STAY IN CHARACTER NATURALLY):
+${horse.voiceGuide}
+
+USER'S CURRENT LIVE PATTA CHART PLACEMENTS (USE KEYWORDS ONLY):
+- Birth: ${birthStamp} | Today: ${nowCt.dayOfMonth} ${nowCt.monthName} ${formatCtYearInActiveEra(nowCt.ivcYear)} (${nowCt.anquar}), Age ${cansacianAge}
+- Home Bird (Personality): ${homeBird.bird} (${homeBird.month}, ${homeBird.anquar}, ${homeBird.stage}) | Theme: ${homeBird.theme} | Keywords: ${(homeBird.keywords || []).join(', ')}
+- Blue Moon / Chashnac (Emotional State): in ${chashnacBird.bird} (${chashnacBird.month}) | Theme: ${chashnacBird.theme} | Keywords: ${(chashnacBird.keywords || []).join(', ')}
+- White Moon / Chrysomela (Grounded Reality): in ${chrysomelaBird.bird} (${chrysomelaBird.month}) | Theme: ${chrysomelaBird.theme} | Keywords: ${(chrysomelaBird.keywords || []).join(', ')}
+- ${gateStatus}
+- Next Upcoming Crossing Gate Window: ${nextGateText}
+
+CHART RULES:
+- Use the live placements above as the source of truth; their keywords and themes are already included.
+- The two moons describe emotional perspective and grounded reality, and meet at the Crossing Gates.
+- Home Bird describes personality; Crossing Gates mark shared alignment windows.
+
+CONVERSATION RULES:
+1. USE KEYWORDS ONLY: Interpret every Bird, Moon, and Crossing Gate strictly using its listed keywords and theme. NEVER build sentences from literal bird descriptions, plumage colors, nest-building, forest wandering, or literal animal habits.
+2. NATAL CHART QUESTIONS: Clearly tell the user which Bird is their Home Bird, Blue Moon (Chashnac) Bird, White Moon (Chrysomela) Bird, and Crossing Gate status, weaving their keywords into natural, personal insight in your character's voice.
+3. NO MARKDOWN OR ASTERISKS: Write 100% plain conversational text. Never use **bold**, *italics*, asterisks, hashtags, or bullet points.
+4. REPLY IN CONTEXT & SOUND NATURAL: Respond directly to what the user actually asked with natural conversational rhythm. Never invent fake birds, zodiac signs, or made-up lore.
+5. LENGTH: Keep replies concise and natural (2–4 complete sentences, max ~85 words). Always finish on a complete sentence.`;
+    }
+
+    /** Run the cached local model directly; anonymous cloud endpoints are no longer reliable. */
+    async function generateHorseReply(horse, history, systemPrompt, onToken) {
+      try {
+        const localRaw = await generateWithLocalBrowserLLM(horse, history, systemPrompt, onToken);
+        if (localRaw && typeof localRaw === 'string' && localRaw.trim().length >= 2) {
+          return cleanCompleteSentences(localRaw);
+        }
+      } catch (err) {
+        console.error('Horse Oracle local generation failed:', err);
+      }
+      return null;
+    }
+
+    async function sendSuggestedHorsePrompt(promptText) {
+      if (state.selectedHorseIndex === null || state.owlBusy) return;
+      const idx = state.selectedHorseIndex;
+      const horse = HORSE_CARDS[idx];
+      const history = state.horseHistories[idx];
+
+      history.push({ role: 'user', text: promptText });
+
+      state.startedHorseChats = [
+        idx,
+        ...state.startedHorseChats.filter((existingIdx) => existingIdx !== idx)
+      ];
+
+      if (isTypoMessage(promptText)) {
+        history.push({ role: 'model', text: horse.typoReply });
+        renderHorseChatMessages();
+        return;
+      }
+
+      state.localAiStatus = '';
+      state.owlBusy = true;
+      renderHorseChatMessages();
+
+      let streamPaintFrame = 0;
+      try {
+        const systemPrompt = buildHorseSystemInstruction(horse);
+        let streamedBubble = null;
+        let streamedText = '';
+        let pendingStreamText = '';
+        let lastStreamFrameAt = 0;
+        let streamCharacterFraction = 0;
+        const paintStream = (frameTime) => {
+          streamPaintFrame = 0;
+          if (!pendingStreamText) return;
+          if (!lastStreamFrameAt) lastStreamFrameAt = frameTime;
+          const elapsed = Math.min(80, frameTime - lastStreamFrameAt);
+          lastStreamFrameAt = frameTime;
+          streamCharacterFraction += elapsed * 0.055;
+          const revealCount = Math.min(pendingStreamText.length, Math.floor(streamCharacterFraction));
+          if (!revealCount) {
+            streamPaintFrame = requestAnimationFrame(paintStream);
+            return;
+          }
+          streamedText += pendingStreamText.slice(0, revealCount);
+          pendingStreamText = pendingStreamText.slice(revealCount);
+          streamCharacterFraction -= revealCount;
+          if (state.selectedHorseIndex === idx) {
+            const container = document.getElementById('horse-chat-messages');
+            if (container) {
+              if (!streamedBubble) {
+                document.getElementById('horse-typing-indicator')?.remove();
+                streamedBubble = document.createElement('div');
+                streamedBubble.className = 'mr-4 rounded-2xl rounded-bl-sm bg-white border border-purple-100 text-inkDark px-3.5 py-2.5 shadow-sm text-xs leading-relaxed whitespace-pre-wrap';
+                container.appendChild(streamedBubble);
+              }
+              streamedBubble.textContent = streamedText;
+              // Avoid a synchronous scrollHeight/layout read for each text frame.
+              container.scrollTop = 1e9;
+            }
+          }
+          if (pendingStreamText) streamPaintFrame = requestAnimationFrame(paintStream);
+          else lastStreamFrameAt = 0;
+        };
+        const replyText = await generateHorseReply(horse, history, systemPrompt, (chunk) => {
+          pendingStreamText += chunk;
+          if (!streamPaintFrame) streamPaintFrame = requestAnimationFrame(paintStream);
+        });
+        if (pendingStreamText) {
+          await new Promise((resolve) => {
+            const waitForStreamPaint = () => {
+              if (pendingStreamText) requestAnimationFrame(waitForStreamPaint);
+              else resolve();
+            };
+            waitForStreamPaint();
+          });
+        }
+
+        if (replyText) {
+          history.push({ role: 'model', text: replyText });
+        } else {
+          const fallbackText = "Sorry, my connection dropped for a second—send that again?";
+          history.push({ role: 'model', text: fallbackText });
+        }
+      } finally {
+        if (streamPaintFrame) cancelAnimationFrame(streamPaintFrame);
+        state.owlBusy = false;
+        state.localAiStatus = '';
+        renderHorseChatMessages();
+      }
+    }
+
+    function handleHorseChatSubmit(e) {
+      e.preventDefault();
+      if (state.selectedHorseIndex === null || state.owlBusy) return;
+      const input = document.getElementById('horse-chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      sendSuggestedHorsePrompt(text);
+    }
+
+    function initHorseCoverFlow() {
+      const stage = document.getElementById('coverflow-stage');
+      const dotsContainer = document.getElementById('coverflow-dots');
+      stage.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      HORSE_CARDS.forEach((card, idx) => {
+        const cardEl = document.createElement('div');
+        cardEl.id = `horse-cf-card-${idx}`;
+        cardEl.className = `coverflow-card w-[206px] h-[232px] rounded-[24px] bg-gradient-to-br ${card.palette.bg} border border-white/95 p-3 flex flex-col justify-between cursor-pointer select-none`;
+        cardEl.onclick = () => {
+          if (state.horseActiveIndex !== idx) {
+            setHorseCoverFlowIndex(idx);
+          } else {
+            selectHorseForChat(idx);
+          }
+        };
+
+        const topTraits = card.traits.slice(0, 3).join(' · ');
+
+        cardEl.innerHTML = `
+          <div class="flex flex-col items-center text-center gap-1">
+            <div class="w-11 h-11 rounded-2xl bg-white/90 border border-purple-100 shadow-sm flex items-center justify-center shrink-0">
+              ${getHorseCardSvg(card.avatarType, card.silhouetteColor)}
+            </div>
+            <div>
+              <div class="text-[14px] font-extrabold text-inkDark leading-tight">${card.name}</div>
+              <div class="text-[9px] font-bold text-accentPurple mt-0.5">${topTraits}</div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-white/85 border border-purple-100/80 px-2.5 py-2 text-center">
+            <p class="text-[10px] font-medium text-inkDark leading-[1.38]">"${card.description}"</p>
+          </div>
+        `;
+
+        stage.appendChild(cardEl);
+
+        const dotBtn = document.createElement('button');
+        dotBtn.type = 'button';
+        dotBtn.id = `horse-cf-dot-${idx}`;
+        dotBtn.setAttribute('aria-label', `Select ${card.name}`);
+        dotBtn.className = 'h-1.5 rounded-full transition-all duration-300';
+        dotBtn.onclick = () => setHorseCoverFlowIndex(idx);
+        dotsContainer.appendChild(dotBtn);
+      });
+
+      let pointerStartX = 0;
+      let isDragging = false;
+
+      const onDragStart = (clientX) => {
+        pointerStartX = clientX;
+        isDragging = true;
+      };
+
+      const onDragEnd = (clientX) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const deltaX = clientX - pointerStartX;
+        if (Math.abs(deltaX) > 28) {
+          stepHorseCoverFlow(deltaX < 0 ? 1 : -1);
+        }
+      };
+
+      stage.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) onDragStart(e.touches[0].clientX);
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) onDragEnd(e.changedTouches[0].clientX);
+      }, { passive: true });
+
+      stage.addEventListener('mousedown', (e) => {
+        onDragStart(e.clientX);
+      });
+
+      window.addEventListener('mouseup', (e) => {
+        if (isDragging) onDragEnd(e.clientX);
+      });
+
+      let wheelCooldown = 0;
+      stage.addEventListener('wheel', (e) => {
+        const dominantDelta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (Math.abs(dominantDelta) < 12) return;
+        e.preventDefault();
+        const now = Date.now();
+        if (now - wheelCooldown < 220) return;
+        wheelCooldown = now;
+        stepHorseCoverFlow(dominantDelta > 0 ? 1 : -1);
+      }, { passive: false });
+
+      updateHorseCoverFlow();
+    }
+
+    function stepHorseCoverFlow(delta) {
+      const total = HORSE_CARDS.length;
+      const next = (state.horseActiveIndex + delta + total) % total;
+      setHorseCoverFlowIndex(next);
+    }
+
+    function setHorseCoverFlowIndex(index) {
+      state.horseActiveIndex = index;
+      updateHorseCoverFlow();
+    }
+
+    function updateHorseCoverFlow() {
+      const total = HORSE_CARDS.length;
+      const active = state.horseActiveIndex;
+
+      const counterEl = document.getElementById('coverflow-counter');
+      if (counterEl) {
+        counterEl.textContent = `${active + 1} / ${total}`;
+      }
+
+      HORSE_CARDS.forEach((_, idx) => {
+        const cardEl = document.getElementById(`horse-cf-card-${idx}`);
+        const dotEl = document.getElementById(`horse-cf-dot-${idx}`);
+        if (!cardEl) return;
+
+        let offset = idx - active;
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+
+        const absOffset = Math.abs(offset);
+        const zIndex = 30 - absOffset;
+
+        if (offset === 0) {
+          cardEl.style.transform = 'translate(-50%, -50%) translateX(0px) translateZ(36px) rotateY(0deg) scale(1)';
+          cardEl.style.opacity = '1';
+          cardEl.style.zIndex = String(zIndex);
+          cardEl.style.boxShadow = '0 16px 32px -8px rgba(124, 58, 237, 0.22), 0 4px 12px rgba(30, 27, 46, 0.08)';
+          cardEl.style.pointerEvents = 'auto';
+        } else {
+          const sign = offset > 0 ? 1 : -1;
+          const translateX = sign * (88 + (absOffset - 1) * 42);
+          const translateZ = -28 * absOffset;
+          const rotateY = -sign * 46;
+          const scale = Math.max(0.74, 0.88 - (absOffset - 1) * 0.06);
+
+          cardEl.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+          cardEl.style.opacity = String(Math.max(0.45, 0.94 - (absOffset - 1) * 0.22));
+          cardEl.style.zIndex = String(zIndex);
+          cardEl.style.boxShadow = '0 10px 22px -8px rgba(30, 27, 46, 0.14)';
+          cardEl.style.pointerEvents = 'auto';
+        }
+
+        if (dotEl) {
+          dotEl.className = idx === active
+            ? 'h-1.5 w-4 rounded-full bg-accentPurple transition-all duration-300'
+            : 'h-1.5 w-1.5 rounded-full bg-purple-200 hover:bg-purple-300 transition-all duration-300';
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', initPatta);
+  </script>
+</body>
+</html>
